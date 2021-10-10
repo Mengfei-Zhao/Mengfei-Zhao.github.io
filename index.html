@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -165,6 +165,110 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/10/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="Stay Hungry, Stay Foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/10/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">Arduino舒适的开发环境搭建：vscode+arduino插件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-10-10 12:26:01 / 修改时间：11:18:14" itemprop="dateCreated datePublished" datetime="2021-10-10T12:26:01+08:00">2021-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Arduino/" itemprop="url" rel="index"><span itemprop="name">Arduino</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>Arduino舒适的开发环境搭建：vscode+arduino插件</h1>
+<p>[TOC]</p>
+<hr>
+<ul>
+<li>板卡：Arduino uno</li>
+<li>OS: win10</li>
+<li>开发环境：vscode + arduino插件</li>
+<li>工程作用：可以实现arduino的LED闪烁。</li>
+</ul>
+<hr>
+<p>安装Arduino插件：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007192010599.png" alt="image-20211007192010599" style="zoom:70%;" />
+<p>目录结构：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007192231896.png" alt="image-20211007192231896" style="zoom:67%;" />
+<h3 id="1、在vscode的用户配置文件settings-json中加入下面这些内容，用来对arduino插件做全局的默认配置：">1、在vscode的用户配置文件settings.json中加入下面这些内容，用来对arduino插件做全局的默认配置：</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;arduino.path&quot;</span>: <span class="string">&quot;G:\\Arduino&quot;</span>, <span class="comment">// arduino IDE安装的位置</span></span><br><span class="line"><span class="string">&quot;arduino.commandPath&quot;</span>: <span class="string">&quot;arduino_debug.exe&quot;</span>, <span class="comment">//这是一个上述位置中的exe文件</span></span><br><span class="line"><span class="string">&quot;C_Cpp.default.browse.path&quot;</span>: [ </span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\avr\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\variants\\standard\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\ArduinoPrj\\libraries\\**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;C_Cpp.default.includePath&quot;</span>: [ <span class="comment">//头文件引用路径</span></span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\avr\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\variants\\standard\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\ArduinoPrj\\libraries\\**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;arduino.logLevel&quot;</span>: <span class="string">&quot;info&quot;</span>,</span><br><span class="line"><span class="string">&quot;arduino.allowPDEFiletype&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.enableUSBDetection&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;arduino.disableTestingOpen&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.skipHeaderProvider&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.disableIntelliSenseAutoGen&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;arduino.additionalUrls&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;http://arduino.esp8266.com/stable/package_esp8266com_index.json&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;arduino.defaultBaudRate&quot;</span>: <span class="number">115200</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="2、在-vscode文件夹下新建一个c-cpp-settings-json，并添加下面内容：">2、在.vscode文件夹下新建一个c_cpp_settings.json，并添加下面内容：</h3>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008094940783.png" alt="image-20211008094940783" style="zoom:80%;" />
+<p>上述中的includePath是需要认真设置的，这个不设置也行，在编写源文件时，会在#include的头文件下面出现红色波浪线，提示找不到文件之类的，例如下方这个。此时点击Quick Fix，把路径添加上就可以了，新添加的路径会自动出现在上方c_cpp_settings.json中的includePath中。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008095347411.png" alt="image-20211008095347411" style="zoom:80%;" />
+<h3 id="3、在-vscode文件夹下新建一个arduino-json，并添加下面内容：">3、在.vscode文件夹下新建一个arduino.json，并添加下面内容：</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sketch&quot;</span>: <span class="string">&quot;appMain.ino&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="string">&quot;COM10&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;board&quot;</span>: <span class="string">&quot;arduino:avr:uno&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;output&quot;</span>: <span class="string">&quot;./build&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;debugger&quot;</span>: <span class="string">&quot;jlink&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;intelliSenseGen&quot;</span>: <span class="string">&quot;global&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4、编写源文件">4、编写源文件</h3>
+<p>请在<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/utility">github</a>中下载。</p>
+<h3 id="5、编译烧录">5、编译烧录</h3>
+<p>写好源文件后，点击图中的A是编译，B是烧录，C是修改串口号，D是c_cpp_settings.json中的&quot;name&quot;</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008100422545.png" alt="image-20211008100422545"></p>
+<h3 id="6、搞定">6、搞定</h3>
+<p><strong>工程文件有需要的话，请到<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/utility">Github</a>中下载</strong></p>
+<p><strong>另外，vscode-arduino官方的文档看这个<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino">链接</a>。</strong></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom:50%;" />
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -272,324 +376,6 @@
 <p>ps: 给个油管的PIO开发arduino的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=lXchL3hpDO4&amp;ab_channel=JanPenninkhof">教程</a>。</p>
 <p><strong>最后：</strong></p>
 <img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom: 50%;" />
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/09/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="Stay Hungry, Stay Foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/09/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-09 17:28:51" itemprop="dateCreated datePublished" datetime="2021-10-09T17:28:51+08:00">2021-10-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-08 11:36:43" itemprop="dateModified" datetime="2021-10-08T11:36:43+08:00">2021-10-08</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>Arduino舒适的开发环境搭建：vscode+arduino插件</h1>
-<p>[TOC]</p>
-<hr>
-<ul>
-<li>板卡：Arduino uno</li>
-<li>OS: win10</li>
-<li>开发环境：vscode + arduino插件</li>
-<li>工程作用：可以实现arduino的LED闪烁。</li>
-</ul>
-<hr>
-<p>安装Arduino插件：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007192010599.png" alt="image-20211007192010599" style="zoom:70%;" />
-<p>目录结构：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007192231896.png" alt="image-20211007192231896" style="zoom:67%;" />
-<h3 id="1、在vscode的用户配置文件settings-json中加入下面这些内容，用来对arduino插件做全局的默认配置：">1、在vscode的用户配置文件settings.json中加入下面这些内容，用来对arduino插件做全局的默认配置：</h3>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;arduino.path&quot;</span>: <span class="string">&quot;G:\\Arduino&quot;</span>, <span class="comment">// arduino IDE安装的位置</span></span><br><span class="line"><span class="string">&quot;arduino.commandPath&quot;</span>: <span class="string">&quot;arduino_debug.exe&quot;</span>, <span class="comment">//这是一个上述位置中的exe文件</span></span><br><span class="line"><span class="string">&quot;C_Cpp.default.browse.path&quot;</span>: [ </span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\avr\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\variants\\standard\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\ArduinoPrj\\libraries\\**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;C_Cpp.default.includePath&quot;</span>: [ <span class="comment">//头文件引用路径</span></span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\avr\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\variants\\standard\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\ArduinoPrj\\libraries\\**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;arduino.logLevel&quot;</span>: <span class="string">&quot;info&quot;</span>,</span><br><span class="line"><span class="string">&quot;arduino.allowPDEFiletype&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.enableUSBDetection&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;arduino.disableTestingOpen&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.skipHeaderProvider&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.disableIntelliSenseAutoGen&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;arduino.additionalUrls&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;http://arduino.esp8266.com/stable/package_esp8266com_index.json&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;arduino.defaultBaudRate&quot;</span>: <span class="number">115200</span>,</span><br></pre></td></tr></table></figure>
-<h3 id="2、在-vscode文件夹下新建一个c-cpp-settings-json，并添加下面内容：">2、在.vscode文件夹下新建一个c_cpp_settings.json，并添加下面内容：</h3>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008094940783.png" alt="image-20211008094940783" style="zoom:80%;" />
-<p>上述中的includePath是需要认真设置的，这个不设置也行，在编写源文件时，会在#include的头文件下面出现红色波浪线，提示找不到文件之类的，例如下方这个。此时点击Quick Fix，把路径添加上就可以了，新添加的路径会自动出现在上方c_cpp_settings.json中的includePath中。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008095347411.png" alt="image-20211008095347411" style="zoom:80%;" />
-<h3 id="3、在-vscode文件夹下新建一个arduino-json，并添加下面内容：">3、在.vscode文件夹下新建一个arduino.json，并添加下面内容：</h3>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sketch&quot;</span>: <span class="string">&quot;appMain.ino&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="string">&quot;COM10&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;board&quot;</span>: <span class="string">&quot;arduino:avr:uno&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;output&quot;</span>: <span class="string">&quot;./build&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;debugger&quot;</span>: <span class="string">&quot;jlink&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;intelliSenseGen&quot;</span>: <span class="string">&quot;global&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4、编写源文件">4、编写源文件</h3>
-<p>请在<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/utility">github</a>中下载。</p>
-<h3 id="5、编译烧录">5、编译烧录</h3>
-<p>写好源文件后，点击图中的A是编译，B是烧录，C是修改串口号，D是c_cpp_settings.json中的&quot;name&quot;</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008100422545.png" alt="image-20211008100422545"></p>
-<h3 id="6、搞定">6、搞定</h3>
-<p><strong>工程文件有需要的话，请到<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/utility">Github</a>中下载</strong></p>
-<p><strong>另外，vscode-arduino官方的文档看这个<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino">链接</a>。</strong></p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom:50%;" />
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/09/My-New-Post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="Stay Hungry, Stay Foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/09/My-New-Post/" class="post-title-link" itemprop="url">My New Post</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-10-09 11:02:19 / 修改时间：15:53:58" itemprop="dateCreated datePublished" datetime="2021-10-09T11:02:19+08:00">2021-10-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>这个用来测试emoji<br>
-😄</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/08/Good-Night/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="Stay Hungry, Stay Foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/08/Good-Night/" class="post-title-link" itemprop="url">Good Night, Baby~</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-08 23:26:01" itemprop="dateCreated datePublished" datetime="2021-10-08T23:26:01+08:00">2021-10-08</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-09 14:26:39" itemprop="dateModified" datetime="2021-10-09T14:26:39+08:00">2021-10-09</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>Baby：</strong></p>
-<p><strong>所有人都在这个时候睡觉，只有我在这个时候想你。从日落到清晨，从醉酒到清醒，从过去到现在。</strong></p>
-<p><strong>晚安啦，宝贝，爱你呦~~</strong></p>
-<p><strong>Fikry</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="Stay Hungry, Stay Foolish.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-08 19:27:46" itemprop="dateCreated datePublished" datetime="2021-10-08T19:27:46+08:00">2021-10-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
