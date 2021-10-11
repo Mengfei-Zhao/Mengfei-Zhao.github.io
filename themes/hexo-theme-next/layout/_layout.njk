@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}">
+<head>
+  {{ partial('_partials/head/head.njk', {}, {cache: theme.cache.enable}) }}
+  {%- include '_partials/head/head-unique.njk' -%}
+  <title>{% block title %}{% endblock %}</title>
+  {{ partial('_third-party/analytics/index.njk', {}, {cache: theme.cache.enable}) }}
+  {{- next_inject('head') }}
+  <noscript>
+    <link rel="stylesheet" href="{{ url_for(theme.css) }}/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage"{% if theme.motion.enable %} class="use-motion"{% endif %}>
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        {%- include '_partials/header/index.njk' -%}
+      </div>
+      {%- if theme.sidebar.display !== 'remove' %}
+        {% block sidebar %}{% endblock %}
+      {%- endif %}
+    </header>
+
+    {{ partial('_partials/widgets.njk', {}, {cache: theme.cache.enable}) }}
+
+    <div class="main-inner {% block class %}{% endblock %}">
+      {%- include '_partials/header/sub-menu.njk' -%}
+      {% block content %}{% endblock %}
+      {%- include '_partials/comments.njk' -%}
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      {%- include '_partials/languages.njk' -%}
+      {{ partial('_partials/footer.njk', {}, {cache: theme.cache.enable}) }}
+    </div>
+  </footer>
+
+  {{ partial('_scripts/index.njk', {}, {cache: theme.cache.enable}) }}
+  {{ partial('_third-party/index.njk', {}, {cache: theme.cache.enable}) }}
+  {{ partial('_third-party/statistics/index.njk', {}, {cache: theme.cache.enable}) }}
+
+  {%- include '_third-party/math/index.njk' -%}
+  {%- include '_third-party/quicklink.njk' -%}
+
+  {{- next_inject('bodyEnd') }}
+
+  <!-- 鼠标点击特效 -->
+  {% if theme.cursor_effect %}
+    {% if theme.cursor_effect.type == "fireworks" %}
+      <script src="/js/cursor/fireworks.js"></script>
+    {% elseif theme.cursor_effect.type == "explosion" %}
+      <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+      <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+      <script src="/js/cursor/explosion.min.js"></script>
+    {% elseif theme.cursor_effect.type == "love" %}
+      <script src="/js/cursor/love.min.js"></script>
+    {% elseif theme.cursor_effect.type == "text" %}
+      <script src="/js/cursor/text.js"></script>
+    {% endif %}
+  {% endif %}
+
+
+</body>
+</html>
