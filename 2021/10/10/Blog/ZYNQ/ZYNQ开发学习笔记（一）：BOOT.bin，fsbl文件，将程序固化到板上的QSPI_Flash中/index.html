@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/mf_apple_touch_icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/mf_favicon_32_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/mf_favicon_16_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.zhaomengfei.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1、环境介绍：  ZYNQ-7000 MZ7XA板卡 vivado 2020.1 vitis 2020.1  2、正文： 首先介绍一下镜像这个概念，下面是百度百科中的解释：  所谓镜像文件其实和rar ZIP压缩包类似，它将特定的一系列文件按照一定的格式制作成单一的文件，以方便用户下载和使用，例如一个操作系统、游戏等。它最重要的特点是可以被特定的软件识别并可直接刻录到光盘上。其实通常意义上的镜像文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中">
+<meta property="og:url" content="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/index.html">
+<meta property="og:site_name" content="Mengfei&#39;s Personal Website">
+<meta property="og:description" content="1、环境介绍：  ZYNQ-7000 MZ7XA板卡 vivado 2020.1 vitis 2020.1  2、正文： 首先介绍一下镜像这个概念，下面是百度百科中的解释：  所谓镜像文件其实和rar ZIP压缩包类似，它将特定的一系列文件按照一定的格式制作成单一的文件，以方便用户下载和使用，例如一个操作系统、游戏等。它最重要的特点是可以被特定的软件识别并可直接刻录到光盘上。其实通常意义上的镜像文">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162341338.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162649052.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002163328456.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002163622228.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164114451.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164030549.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164344390.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164607517.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/20200626232927148.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002172924391.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002171139341.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002173806240.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174044195.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174241139.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174408697.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174626648.png">
+<meta property="article:published_time" content="2021-10-10T05:26:01.000Z">
+<meta property="article:modified_time" content="2021-10-11T08:37:22.723Z">
+<meta property="article:author" content="Mengfei">
+<meta property="article:tag" content="ZYNQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162341338.png">
+
+
+<link rel="canonical" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/","path":"2021/10/10/Blog/ZYNQ/ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中/","title":"ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中 | Mengfei's Personal Website</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Mengfei's Personal Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Mengfei's Personal Website</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs & Notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">1、环境介绍：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%AD%A3%E6%96%87%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">2、正文：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vivado%E5%B7%A5%E7%A8%8B%E6%96%B9%E9%9D%A2%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">vivado工程方面：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vitis%E5%B7%A5%E7%A8%8B%E6%96%B9%E9%9D%A2%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">vitis工程方面：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">3、参考文献：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mengfei"
+      src="/images/head_portrait.jpg">
+  <p class="site-author-name" itemprop="name">Mengfei</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Mengfei-Zhao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Mengfei-Zhao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_43128203?spm=1001.2101.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43128203?spm&#x3D;1001.2101.3001.5343" rel="noopener" target="_blank"><i class="fa fa-blog fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaomf@mail.sim.ac.cn" title="E-Mail → mailto:zhaomf@mail.sim.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-10-10 13:26:01" itemprop="dateCreated datePublished" datetime="2021-10-10T13:26:01+08:00">2021-10-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-11 16:37:22" itemprop="dateModified" datetime="2021-10-11T16:37:22+08:00">2021-10-11</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ZYNQ/" itemprop="url" rel="index"><span itemprop="name">ZYNQ</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="1、环境介绍：">1、环境介绍：</h2>
+<ul>
+<li>ZYNQ-7000 MZ7XA板卡</li>
+<li>vivado 2020.1</li>
+<li>vitis 2020.1</li>
+</ul>
+<h2 id="2、正文：">2、正文：</h2>
+<p>首先介绍一下<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6/101053?fr=aladdin">镜像</a>这个概念，下面是百度百科中的解释：</p>
+<blockquote>
+<p>所谓镜像文件其实和rar ZIP压缩包类似，它将特定的一系列文件按照一定的格式制作成单一的文件，以方便用户下载和使用，例如一个操作系统、游戏等。它最重要的特点是可以被特定的软件识别并可直接刻录到<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%89%E7%9B%98/170215">光盘</a>上。其实通常意义上的镜像文件可以再扩展一下，在镜像文件中可以包含更多的信息。比如说系统文件、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%BC%95%E5%AF%BC%E6%96%87%E4%BB%B6/659617">引导文件</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%88%86%E5%8C%BA%E8%A1%A8/215102">分区表</a>信息等，这样镜像文件就可以包含一个分区甚至是一块硬盘的所有信息。</p>
+</blockquote>
+<p>额，理解了镜像的概念，接下来以在vivado vitis工程中的实际操作中学习BOOT.bin  fsbl等内容。</p>
+<h3 id="vivado工程方面：">vivado工程方面：</h3>
+<p>配置一下PS，生成一个HDL Wrapper.v，然后在Wrapper.v文件中加入一段4bit流水灯的代码，代码如下：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162341338.png" alt="image-20211002162341338" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162649052.png" alt="image-20211002162649052" style="zoom:70%;" />
+<p>然后生成.bit文件，导出xsa文件，接下在切换到vitis开发。</p>
+<h3 id="vitis工程方面：">vitis工程方面：</h3>
+<p>新建一个硬件工程，命名为<code>run_led_hw_platform</code></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002163328456.png" alt="image-20211002163328456" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002163622228.png" alt="image-20211002163622228" style="zoom:80%;" />
+<p>指定刚vivado生成的xsa文件，上图中记得勾选Generate boot components，这个会在生成的硬件工程中产生一个zynq_fsbl文件夹，打开会发现有一堆fsbl相关的源文件，编译一下整个硬件工程，就会在下面图二的1处产生一个fsbl.elf文件。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164114451.png" alt="image-20211002164114451"></p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164030549.png" alt="image-20211002164030549"></p>
+<p>接下来新建一个helloWorld的应用工程，命名为<code>helloWorld</code>，并编译一下。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164344390.png" alt="image-20211002164344390" style="zoom:80%;" />
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164607517.png" alt="image-20211002164607517"></p>
+<p>接下来讲一下当我们成功固化程序到flash中后，ZYNQ板子启动的过程。</p>
+<ul>
+<li>
+<p>ZYNQ内部的BootROM存储有一段在CPU复位后固定执行的代码。称为stage-0启动代码。（这个ROM中的代码，掉电不丢失）</p>
+</li>
+<li>
+<p>这段代码用来配置一个ARM CPU和一些必要外设，从而能从一个启动设备中获取FSBL（first stage boot loader）执行。BootROM是一个ROM，不可写，PL的配置不是通过BootROM实现的。BootROM不能使用DDR和SCU，因为它们还没有初始化。</p>
+</li>
+<li>
+<p>BOOT.bin是一个镜像文件，我们这里是将它存储在外部的QSPI-Flash中，BOOT.bin包含有fsbl.elf，PL部分配置文件（.bit)，应用工程的可执行二进制文件（helloWorld.elf文件）</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/20200626232927148.png" alt=" "></p>
+</li>
+<li>
+<p>当BootROM把flash中BOOT.bin中的fsbl装载到OCM后，接下来就开始执行fsbl了。</p>
+</li>
+<li>
+<p>fsbl负责下面这些：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002172924391.png" alt="image-20211002172924391" style="zoom:80%;" />
+<p>对于基于zynq的嵌入式Linux系统，BootROM引导启动FSBL，FSBL引导启动U-Boot，U-boot引导启动Linux内核。</p>
+</li>
+</ul>
+<p>理解了上面这些，接下来继续创建Boot Image。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002171139341.png" alt="image-20211002171139341" style="zoom:80%;" />
+<p>上图中出现了好多文件，它们的关系详情请参考ug821的boot章节，这个BOOT.bin就是需要制作出来的镜像文件，它里面包含有下面fsbl.elf，run_lef.bit，helloWorld.elf文件。至于上面的helloWorld.bif文件，它是一个Boot Image Format 文件，用于制作BOOT.bin用的。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002173806240.png" alt="image-20211002173806240"></p>
+<p>制作好BOOT.bin后，接下来把它烧录到QSPI-Flash中：</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174044195.png" alt="image-20211002174044195"></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174241139.png" alt="image-20211002174241139" style="zoom:90%;" />
+<p>在consol窗口中出现一系列消息后，就成功了。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174408697.png" alt="image-20211002174408697"></p>
+<p>此时打开一个串口窗口，对板子重新上电，可看到流水灯在闪烁，串口打印成功。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174626648.png" alt="image-20211002174626648"></p>
+<h2 id="3、参考文献：">3、参考文献：</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jinry001/article/details/99693549">米联客教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/asd1147170607/article/details/106976572">ZYNQ_FSBL学习</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43445577/article/details/113846028">zynq中的BootROM</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ZYNQ/" rel="tag"># ZYNQ</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/" rel="prev" title="Arduino舒适的开发环境搭建：vscode+arduino插件">
+                  <i class="fa fa-chevron-left"></i> Arduino舒适的开发环境搭建：vscode+arduino插件
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mengfei</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Mengfei-Zhao","repo":"BlogComment","client_id":"e9e0a0a67b70fb155982","client_secret":"62a613939d04c40c12242eec6657e2b11c4ba320","admin_user":"Mengfei-Zhao","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"39bc7af754b0533b34ebb288d948472e"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+
+  <!-- 鼠标点击特效 -->
+  
+    
+      <script src="/js/cursor/love.min.js"></script>
+    
+  
+
+
+</body>
+</html>
