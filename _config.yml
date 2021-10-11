@@ -115,7 +115,9 @@ feed:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: "git"
-  repo: https://github.com/Mengfei-Zhao/Mengfei-Zhao.github.io
+  repo:
+    github: https://github.com/Mengfei-Zhao/Mengfei-Zhao.github.io
+    # coding: https://e.coding.net/zhaomengfei/personalwebsite/hexoblog.git,master
   branch: master
 
 ## markdown 渲染引擎配置，默认是hexo-renderer-marked，这个插件渲染速度更快，且有新特性
@@ -146,5 +148,3 @@ search:
   field: post
   format: html
   limit: 1000
-
-
