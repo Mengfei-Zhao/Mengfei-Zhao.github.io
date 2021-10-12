@@ -2,6 +2,7 @@
 title: About
 date: 2021-10-09 16:21:34
 type: about
+comments: false
 ---
 
 ## 关于我 | About Me
