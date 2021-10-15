@@ -6,7 +6,7 @@
   <link href="https://www.zhaomengfei.xyz/atom.xml" rel="self"/>
   
   <link href="https://www.zhaomengfei.xyz/"/>
-  <updated>2021-10-15T15:36:40.866Z</updated>
+  <updated>2021-10-15T15:39:15.926Z</updated>
   <id>https://www.zhaomengfei.xyz/</id>
   
   <author>
@@ -21,18 +21,18 @@
     <link href="https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/"/>
     <id>https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/</id>
     <published>2021-10-11T16:00:00.000Z</published>
-    <updated>2021-10-15T15:36:40.866Z</updated>
+    <updated>2021-10-15T15:39:15.926Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="前言：">前言：</h2><p><strong>环境介绍：</strong> AD20</p><p><strong>目的：</strong> 将PCB两面都铺上GND的铜，并放置via阵列。</p><h2 id="正文：">正文：</h2><p>当把板子都布局，布好线后，需要铺铜时，<code>P-&gt;G</code>，然后选择铺铜的区域，围绕板子四周画一个矩形，画好后，鼠标右键2下，铺铜。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164220558.png" alt="image-20211012164220558" style="zoom:67%;" /><p>铺好后手动去除板子四个角外部的铜，如下图所示，选择Polygon Pour Cutout，然后把不想要的铜圈起来即可。选中铜皮，将其设置为连接到GND net上。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164527955.png" alt="image-20211012164527955" style="zoom:67%;" /><p>上面只是铺好了top layer的铜皮，下面来铺bottom layer的。选中top layer的铜皮，ctrl+c，然后鼠标左键点击一下我们设置好的origin point，切换到bottom layer，选择special paste，然后对话框设置一下，之后再选择一次origin point即可。之后可以再按照上述方式去除一下keep out外面的死铜。当然也可以在铺铜的设置选项里勾选“去除死铜”，但是这样会把板子里面的死铜也给去除掉，读者根据需要来选择吧。</p><img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png" alt="image-20211012165114319" style="zoom:80%;" /><p>下面开始放置一些小的via阵列，首先将“铜皮”隐藏，放置干扰我们视野。方法：ctrl+D，在view configuration窗口中隐藏Polygons。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165745814.png" alt="image-20211012165745814" style="zoom:80%;" /><p>开始放置via阵列：</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165946987.png" alt="image-20211012165946987" style="zoom:80%;" /><p>先设置一下Net为GND，然后去勾选左上角的Constrain Area来选择放置的区域，根据需要设置间距，大小之类的参数。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170045704.png" alt="image-20211012170045704" style="zoom:80%;" /><p>放好via阵列的样子：</p><img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" /><p>之后将铜皮取消隐藏即可，并布置丝印层。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言：">前言：</h2><p><strong>环境介绍：</strong>  AD20</p><p><strong>目的：</strong>  将PCB两面都铺上GND的铜，并放置via阵列。</p><h2 id="正文：">正文：</h2><p>当把板子都布局，布好线后，需要铺铜时，<code>P-&gt;G</code>，然后选择铺铜的区域，围绕板子四周画一个矩形，画好后，鼠标右键2下，铺铜。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164220558.png" alt="image-20211012164220558" style="zoom:67%;" /><p>铺好后手动去除板子四个角外部的铜，如下图所示，选择Polygon Pour Cutout，然后把不想要的铜圈起来即可。选中铜皮，将其设置为连接到GND net上。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164527955.png" alt="image-20211012164527955" style="zoom:67%;" /><p>上面只是铺好了top layer的铜皮，下面来铺bottom layer的。选中top layer的铜皮，ctrl+c，然后鼠标左键点击一下我们设置好的origin point，切换到bottom layer，选择special paste，然后对话框设置一下，之后再选择一次origin point即可。之后可以再按照上述方式去除一下keep out外面的死铜。当然也可以在铺铜的设置选项里勾选“去除死铜”，但是这样会把板子里面的死铜也给去除掉，读者根据需要来选择吧。</p><img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png" alt="image-20211012165114319" style="zoom:80%;" /><p>下面开始放置一些小的via阵列，首先将“铜皮”隐藏，放置干扰我们视野。方法：ctrl+D，在view configuration窗口中隐藏Polygons。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165745814.png" alt="image-20211012165745814" style="zoom:80%;" /><p>开始放置via阵列：</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165946987.png" alt="image-20211012165946987" style="zoom:80%;" /><p>先设置一下Net为GND，然后去勾选左上角的Constrain Area来选择放置的区域，根据需要设置间距，大小之类的参数。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170045704.png" alt="image-20211012170045704" style="zoom:80%;" /><p>放好via阵列的样子：</p><img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" /><p>之后将铜皮取消隐藏即可，并布置丝印层。</p>]]></content>
     
     
       
       
     <summary type="html">&lt;h2 id=&quot;前言：&quot;&gt;前言：&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;环境介绍：&lt;/strong&gt; AD20&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;目的：&lt;/strong&gt; 将PCB两面都铺上GND的铜，并放置via阵列。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;环境介绍：&lt;/strong&gt;  AD20&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;目的：&lt;/strong&gt;  将PCB两面都铺上GND的铜，并放置via阵列。&lt;/p&gt;
 &lt;h2 id=&quot;正文：&quot;&gt;正文：&lt;/h2&gt;
-&lt;p&gt;当把板子都</summary>
+&lt;p&gt;当把板</summary>
       
     
     
@@ -78,6 +78,36 @@
   </entry>
   
   <entry>
+    <title>如何将阿里云的域名绑定到Github Page</title>
+    <link href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/"/>
+    <id>https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/</id>
+    <published>2021-10-10T04:26:01.000Z</published>
+    <updated>2021-10-10T08:15:03.681Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1、阿里云注册一个域名">1、阿里云注册一个域名</h3><h3 id="2、设置域名解析">2、设置域名解析</h3><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010150234294.png" alt="image-20211010150234294" style="zoom:67%;" /><h3 id="3、添加记录，将域名指向自己的Github-Page">3、添加记录，将域名指向自己的Github Page</h3><p>首先获得自己的Github Page的IP地址。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping username.github.io</span><br></pre></td></tr></table></figure><p>然后添加一条记录，并按照下图所示设置，A处要填上刚获得的Github Page的IP地址。（这些相关知识点参见<a href="https://blog.csdn.net/qq_29232943/article/details/52786603">链接</a>）</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010151013790.png" alt="image-20211010151013790" style="zoom:80%;" /><p>然后再新建一条记录，<a href="http://xn--github-ow0ju27cvwlwldnr2gou2awvus5g.io">记录值要填自己的github.io</a></p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010151316911.png" alt="image-20211010151316911" style="zoom:80%;" /><p>设置好了后，应该是看到下面这样，需要看到两记录的状态是正常的才行：</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010151518680.png" alt="image-20211010151518680" style="zoom:80%;" /><h3 id="4、在Github-page中设置">4、在Github page中设置</h3><p>在自己的username.github.io界面，点击Setting，然后直接往下翻，找到GitHub Pages，并进入设置页面。</p><p>然后在下面设置域名，并勾选Enforce HTTPS（这个是有加密的，更好些，这样之后自己的网站链接前面是https开头的，如果这里是灰状勾选不了，是因为设置时有问题导致的。），A处就是自己的网站名字。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010152204074.png" alt="image-20211010152204074" style="zoom:80%;" /><h3 id="5、在hexoSite工程文件中设置">5、在hexoSite工程文件中设置</h3><p>在source文件夹下新建一个名称为CNAME的文件，无后缀。并键入下面这样的东西（记得修改为自己的）：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">www.zhaomengfei.xyz</span></span><br><span class="line"><span class="string">zhaomengfei.xyz</span></span><br></pre></td></tr></table></figure><h3 id="6、然后就是正常的hexo的命令操作">6、然后就是正常的hexo的命令操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure><h3 id="7、最终效果">7、最终效果</h3><p>这样，以后在浏览器中键入<code>username.github.io</code>       <code>zhaomengfei.xyz</code>       <code>www.zhaomengfei.xyz时都会自动跳到</code><a href="https://www.zhaomengfei.xyz">https://www.zhaomengfei.xyz</a> 的。</p><p>搞定~</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1、阿里云注册一个域名&quot;&gt;1、阿里云注册一个域名&lt;/h3&gt;
+&lt;h3 id=&quot;2、设置域名解析&quot;&gt;2、设置域名解析&lt;/h3&gt;
+&lt;img src=&quot;https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/</summary>
+      
+    
+    
+    
+    <category term="个人网站" scheme="https://www.zhaomengfei.xyz/categories/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
+    
+    
+    <category term="Hexo" scheme="https://www.zhaomengfei.xyz/tags/Hexo/"/>
+    
+    <category term="Github Page" scheme="https://www.zhaomengfei.xyz/tags/Github-Page/"/>
+    
+    <category term="个人网站" scheme="https://www.zhaomengfei.xyz/tags/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Arduino舒适的开发环境搭建：vscode+arduino插件</title>
     <link href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/"/>
     <id>https://www.zhaomengfei.xyz/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/</id>
@@ -110,36 +140,6 @@
     <category term="Arduino" scheme="https://www.zhaomengfei.xyz/tags/Arduino/"/>
     
     <category term="vscode" scheme="https://www.zhaomengfei.xyz/tags/vscode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何将阿里云的域名绑定到Github Page</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/</id>
-    <published>2021-10-10T04:26:01.000Z</published>
-    <updated>2021-10-10T08:15:03.681Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、阿里云注册一个域名">1、阿里云注册一个域名</h3><h3 id="2、设置域名解析">2、设置域名解析</h3><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010150234294.png" alt="image-20211010150234294" style="zoom:67%;" /><h3 id="3、添加记录，将域名指向自己的Github-Page">3、添加记录，将域名指向自己的Github Page</h3><p>首先获得自己的Github Page的IP地址。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping username.github.io</span><br></pre></td></tr></table></figure><p>然后添加一条记录，并按照下图所示设置，A处要填上刚获得的Github Page的IP地址。（这些相关知识点参见<a href="https://blog.csdn.net/qq_29232943/article/details/52786603">链接</a>）</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010151013790.png" alt="image-20211010151013790" style="zoom:80%;" /><p>然后再新建一条记录，<a href="http://xn--github-ow0ju27cvwlwldnr2gou2awvus5g.io">记录值要填自己的github.io</a></p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010151316911.png" alt="image-20211010151316911" style="zoom:80%;" /><p>设置好了后，应该是看到下面这样，需要看到两记录的状态是正常的才行：</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010151518680.png" alt="image-20211010151518680" style="zoom:80%;" /><h3 id="4、在Github-page中设置">4、在Github page中设置</h3><p>在自己的username.github.io界面，点击Setting，然后直接往下翻，找到GitHub Pages，并进入设置页面。</p><p>然后在下面设置域名，并勾选Enforce HTTPS（这个是有加密的，更好些，这样之后自己的网站链接前面是https开头的，如果这里是灰状勾选不了，是因为设置时有问题导致的。），A处就是自己的网站名字。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211010152204074.png" alt="image-20211010152204074" style="zoom:80%;" /><h3 id="5、在hexoSite工程文件中设置">5、在hexoSite工程文件中设置</h3><p>在source文件夹下新建一个名称为CNAME的文件，无后缀。并键入下面这样的东西（记得修改为自己的）：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">www.zhaomengfei.xyz</span></span><br><span class="line"><span class="string">zhaomengfei.xyz</span></span><br></pre></td></tr></table></figure><h3 id="6、然后就是正常的hexo的命令操作">6、然后就是正常的hexo的命令操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure><h3 id="7、最终效果">7、最终效果</h3><p>这样，以后在浏览器中键入<code>username.github.io</code>       <code>zhaomengfei.xyz</code>       <code>www.zhaomengfei.xyz时都会自动跳到</code><a href="https://www.zhaomengfei.xyz">https://www.zhaomengfei.xyz</a> 的。</p><p>搞定~</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;1、阿里云注册一个域名&quot;&gt;1、阿里云注册一个域名&lt;/h3&gt;
-&lt;h3 id=&quot;2、设置域名解析&quot;&gt;2、设置域名解析&lt;/h3&gt;
-&lt;img src=&quot;https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/</summary>
-      
-    
-    
-    
-    <category term="个人网站" scheme="https://www.zhaomengfei.xyz/categories/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
-    
-    
-    <category term="Hexo" scheme="https://www.zhaomengfei.xyz/tags/Hexo/"/>
-    
-    <category term="Github Page" scheme="https://www.zhaomengfei.xyz/tags/Github-Page/"/>
-    
-    <category term="个人网站" scheme="https://www.zhaomengfei.xyz/tags/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
     
   </entry>
   
