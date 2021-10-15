@@ -11,9 +11,9 @@ tags:
 
 ## 前言：
 
-**环境介绍：**AD20
+**环境介绍：**  AD20
 
-**目的：**将PCB两面都铺上GND的铜，并放置via阵列。
+**目的：**  将PCB两面都铺上GND的铜，并放置via阵列。
 
 ## 正文：
 
@@ -29,7 +29,7 @@ tags:
 
 
 
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png" alt="image-20211012165114319" style="zoom:80%;" />
+<img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png" alt="image-20211012165114319" style="zoom:80%;" />
 
 下面开始放置一些小的via阵列，首先将“铜皮”隐藏，放置干扰我们视野。方法：ctrl+D，在view configuration窗口中隐藏Polygons。
 
@@ -45,6 +45,7 @@ tags:
 
 放好via阵列的样子：
 
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" />
+<img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" />
 
 之后将铜皮取消隐藏即可，并布置丝印层。
+
