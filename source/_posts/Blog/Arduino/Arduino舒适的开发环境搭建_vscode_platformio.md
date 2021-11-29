@@ -21,7 +21,6 @@ Arduino自带的IDE用在小的工程时还可以应付，但是面对大型工�
 * vscode + PlatformIO插件
 * Arduino 官方的IDE  1.8.16
 * 手头有一个Arduino UNO板卡
-* 该博客中的某些链接需要梯子呦
 
 ## 二、开始
 
@@ -120,10 +119,6 @@ void loop()
 <img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007183715444.png" alt="image-20211007183715444" style="zoom:80%;" />
 
 现在新建并编写自己的源文件即可。
-
-
-
-ps: 给个油管的PIO开发arduino的[教程](https://www.youtube.com/watch?v=lXchL3hpDO4&ab_channel=JanPenninkhof)。
 
 
 
