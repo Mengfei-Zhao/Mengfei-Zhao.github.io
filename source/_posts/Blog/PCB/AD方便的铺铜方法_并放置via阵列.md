@@ -40,7 +40,7 @@ tags:
 * 先在top layer铺上铜，按快捷键`T-G-M`进入Polygon Pour Manager，在这里面批量添加铺铜，并设置各个层的Net和名称。
 * 注意：放设置完每一层的Properties信息，想要Apply一下（不用点击OK)，然后再在此窗口中点击Repour操作，否则会出现自己修改完了信息，但是铺铜时发现未识别到刚修改的那一层。
 
-<img src="AD方便的铺铜方法_并放置via阵列.assets/image-20211017144145209.png" alt="image-20211017144145209" style="zoom:60%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211017144145209.png" alt="image-20211017144145209" style="zoom:60%;" />
 
 ### 放置via阵列：
 
