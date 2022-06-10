@@ -20,38 +20,34 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.zhaomengfei.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="前言： 环境介绍：  AD20 目的：  将PCB两面都铺上GND的铜，并放置via阵列。 正文： 方式一： 当把板子都布局，布好线后，需要铺铜时，P-&gt;G，然后选择铺铜的区域，围绕板子四周画一个矩形，画好后，鼠标右键2下，铺铜。  铺好后手动去除板子四个角外部的铜，如下图所示，选择Polygon Pour Cutout，然后把不想要的铜圈起来即可。选中铜皮，将其设置为连接到GND net上">
+<meta name="description" content="开发环境：  本地环境win10,  Pycharm2021 使用远程的centos7 服务器上的python解释器  Matplotlib会抛出下面的警告，然后用matplotlib画的图也无法显示了。 12UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AD软件方便的铺铜，并放置via阵列">
-<meta property="og:url" content="https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/index.html">
+<meta property="og:title" content="Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错">
+<meta property="og:url" content="https://www.zhaomengfei.xyz/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/index.html">
 <meta property="og:site_name" content="Mengfei&#39;s Personal Website">
-<meta property="og:description" content="前言： 环境介绍：  AD20 目的：  将PCB两面都铺上GND的铜，并放置via阵列。 正文： 方式一： 当把板子都布局，布好线后，需要铺铜时，P-&gt;G，然后选择铺铜的区域，围绕板子四周画一个矩形，画好后，鼠标右键2下，铺铜。  铺好后手动去除板子四个角外部的铜，如下图所示，选择Polygon Pour Cutout，然后把不想要的铜圈起来即可。选中铜皮，将其设置为连接到GND net上">
+<meta property="og:description" content="开发环境：  本地环境win10,  Pycharm2021 使用远程的centos7 服务器上的python解释器  Matplotlib会抛出下面的警告，然后用matplotlib画的图也无法显示了。 12UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164220558.png">
-<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164527955.png">
-<meta property="og:image" content="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png">
-<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211017144145209.png">
-<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165745814.png">
-<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165946987.png">
-<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170045704.png">
-<meta property="og:image" content="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png">
-<meta property="article:published_time" content="2021-10-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-07T08:07:35.000Z">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170025158.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170133246.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170254450.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/Snipaste_2022-06-10_17-06-31.jpg">
+<meta property="article:published_time" content="2021-06-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-10T09:16:00.357Z">
 <meta property="article:author" content="Mengfei">
-<meta property="article:tag" content="PCB">
-<meta property="article:tag" content="AD软件">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Pycharm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164220558.png">
+<meta name="twitter:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170025158.png">
 
 
-<link rel="canonical" href="https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/">
+<link rel="canonical" href="https://www.zhaomengfei.xyz/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/","path":"2021/10/12/Blog/PCB/AD方便的铺铜方法_并放置via阵列/","title":"AD软件方便的铺铜，并放置via阵列"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.zhaomengfei.xyz/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/","path":"2021/06/10/Blog/Python/Pycharm_远程Debug_X11_matplotlib/","title":"Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>AD软件方便的铺铜，并放置via阵列 | Mengfei's Personal Website</title>
+<title>Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错 | Mengfei's Personal Website</title>
   
 
 
@@ -160,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%96%87%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">正文：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">方式一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">方式二：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">放置via阵列：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">在服务器端的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">在本地机的配置</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -239,7 +235,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/">
+    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head_portrait.jpg">
@@ -252,7 +248,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          AD软件方便的铺铜，并放置via阵列
+          Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错
         </h1>
 
         <div class="post-meta-container">
@@ -263,14 +259,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-12T00:00:00+08:00">2021-10-12</time>
+      <time title="Created: 2021-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-05-07 16:07:35" itemprop="dateModified" datetime="2022-05-07T16:07:35+08:00">2022-05-07</time>
+        <time title="Modified: 2022-06-10 17:16:00" itemprop="dateModified" datetime="2022-06-10T17:16:00+08:00">2022-06-10</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -278,7 +274,11 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PCB/" itemprop="url" rel="index"><span itemprop="name">PCB</span></a>
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/Pycharm/" itemprop="url" rel="index"><span itemprop="name">Pycharm</span></a>
         </span>
     </span>
 
@@ -292,34 +292,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="前言：">前言：</h2>
-<p><strong>环境介绍：</strong>  AD20</p>
-<p><strong>目的：</strong>  将PCB两面都铺上GND的铜，并放置via阵列。</p>
-<h2 id="正文：">正文：</h2>
-<h3 id="方式一：">方式一：</h3>
-<p>当把板子都布局，布好线后，需要铺铜时，<code>P-&gt;G</code>，然后选择铺铜的区域，围绕板子四周画一个矩形，画好后，鼠标右键2下，铺铜。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164220558.png" alt="image-20211012164220558" style="zoom:67%;" />
-<p>铺好后手动去除板子四个角外部的铜，如下图所示，选择Polygon Pour Cutout，然后把不想要的铜圈起来即可。选中铜皮，将其设置为连接到GND net上。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164527955.png" alt="image-20211012164527955" style="zoom:67%;" />
-<p>上面只是铺好了top layer的铜皮，下面来铺bottom layer的。选中top layer的铜皮，ctrl+c，然后鼠标左键点击一下我们设置好的origin point，切换到bottom layer，选择special paste，然后对话框设置一下，之后再选择一次origin point即可。之后可以再按照上述方式去除一下keep out外面的死铜。当然也可以在铺铜的设置选项里勾选“去除死铜”，但是这样会把板子里面的死铜也给去除掉（一般需要去除死铜），读者根据需要来选择吧。</p>
-<img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png" alt="image-20211012165114319" style="zoom:80%;" />
-<h3 id="方式二：">方式二：</h3>
-<p>当需要画多层板时，有时需要在每一层都铺上铜（前提是内电层是middle layer，不是plane，因为middle layer可以进行铺铜）。按照下面的方法操作：</p>
+        <p>开发环境：</p>
 <ul>
-<li>先在top layer铺上铜，按快捷键<code>T-G-M</code>进入Polygon Pour Manager，在这里面批量添加铺铜，并设置各个层的Net和名称。</li>
-<li>注意：放设置完每一层的Properties信息，想要Apply一下（不用点击OK)，然后再在此窗口中点击Repour操作，否则会出现自己修改完了信息，但是铺铜时发现未识别到刚修改的那一层。</li>
+<li>本地环境win10,  Pycharm2021</li>
+<li>使用远程的centos7 服务器上的python解释器</li>
 </ul>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211017144145209.png" alt="image-20211017144145209" style="zoom:60%;" />
-<h3 id="放置via阵列：">放置via阵列：</h3>
-<p>下面开始放置一些小的via阵列，首先将“铜皮”隐藏，放置干扰我们视野。方法：ctrl+D，在view configuration窗口中隐藏Polygons。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165745814.png" alt="image-20211012165745814" style="zoom:80%;" />
-<p>开始放置via阵列：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165946987.png" alt="image-20211012165946987" style="zoom:80%;" />
-<p>先设置一下Net为GND，然后去勾选左上角的Constrain Area来选择放置的区域，根据需要设置间距，大小之类的参数。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170045704.png" alt="image-20211012170045704" style="zoom:80%;" />
-<p>放好via阵列的样子：</p>
-<img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" />
-<p>之后将铜皮取消隐藏即可，并布置丝印层。</p>
+<p>Matplotlib会抛出下面的警告，然后用matplotlib画的图也无法显示了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UserWarning: Matplotlib is currently using agg, <span class="built_in">which</span> is a non-GUI backend, so cannot show the figure.</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="在服务器端的配置">在服务器端的配置</h2>
+<p>首先要检查服务器上的ssh协议是否正常运行，centos7的话是使用 <code>sudo vim /etc/ssh/sshd_config</code>来编辑ssh的配置文件，加入下面这样的两行。第一行是开启X11Forwarding，第二行是让默认的Display号为11。这个怎么理解呢？以我的使用场景为例，如果该服务器只有自己一个人用ssh的话，当你开启一个MobaXterm，通过ssh连接到服务器后，我本地电脑分配到的Display号默认就是11了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X11Forwarding yes</span><br><span class="line">X11DisplayOffset 11</span><br></pre></td></tr></table></figure>
+<h2 id="在本地机的配置">在本地机的配置</h2>
+<p>下面就是只在自己本地机上操作了，用MobaXterm建立ssh的连接（可以设置自动开启X11 Forwarding，这就体现出了它相比于分别操作Putty和X11 ming的优势)。MobaXterm要设置成下面这样，防止ssh休眠，并开启默认开启X11-Forwarding。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170025158.png" alt="image-20220610170025158" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170133246.png" alt="image-20220610170133246" style="zoom:80%;" />
+<p>这样设置好后，当用ssh连接后，会出现下面的信息：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170254450.png" alt="image-20220610170254450" style="zoom:80%;" />
+<p>让MobaXterm在后台运行着，这样用Pycharm才可以正常在本地显示figure。记得在Mobaxterm中键入 <code>echo $DISPLAY</code>来看本地的号，该号要与下面Pycharm中运行程序的配置文件中的设置的一致，如下图所示。若是这两个号不一致，那么你就会得到本文最开始时的Matplotlib警告信息。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/Snipaste_2022-06-10_17-06-31.jpg" alt="Snipaste_2022-06-10_17-06-31"></p>
+<p>搞定！</p>
 
     </div>
 
@@ -329,21 +320,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/PCB/" rel="tag"># PCB</a>
-              <a href="/tags/AD%E8%BD%AF%E4%BB%B6/" rel="tag"># AD软件</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Pycharm/" rel="tag"># Pycharm</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/" rel="prev" title="ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中">
-                  <i class="fa fa-chevron-left"></i> ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中
-                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/10/15/Blog/PCB/AD_PCB%E6%9D%BF%E7%9A%84%E5%9B%9B%E4%B8%AA%E8%A7%92%E6%94%BE%E7%BD%AE%E9%80%9A%E5%AD%94%E5%92%8C%E5%9C%86%E5%BC%A7keepout%E7%BA%BF%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E6%B3%95/" rel="next" title="AD软件_PCB板的四个角放置通孔和圆弧keepout线的快捷方法">
-                  AD软件_PCB板的四个角放置通孔和圆弧keepout线的快捷方法 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/" rel="next" title="Arduino舒适的开发环境搭建：vscode+PlatformIO">
+                  Arduino舒适的开发环境搭建：vscode+PlatformIO <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -397,7 +385,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Mengfei-Zhao","repo":"BlogComment","client_id":"e9e0a0a67b70fb155982","client_secret":"62a613939d04c40c12242eec6657e2b11c4ba320","admin_user":"Mengfei-Zhao","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"688410f2759a03247bf5d135308b9f8b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Mengfei-Zhao","repo":"BlogComment","client_id":"e9e0a0a67b70fb155982","client_secret":"62a613939d04c40c12242eec6657e2b11c4ba320","admin_user":"Mengfei-Zhao","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"bbb9b3edfa484f4c46ef6e40ea1fadc2"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 

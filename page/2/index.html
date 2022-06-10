@@ -85,9 +85,9 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -432,6 +432,108 @@
 <p>现在新建并编写自己的源文件即可。</p>
 <p><strong>最后：</strong></p>
 <img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom: 50%;" />
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/" class="post-title-link" itemprop="url">Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-06-10 17:16:00" itemprop="dateModified" datetime="2022-06-10T17:16:00+08:00">2022-06-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/Pycharm/" itemprop="url" rel="index"><span itemprop="name">Pycharm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>开发环境：</p>
+<ul>
+<li>本地环境win10,  Pycharm2021</li>
+<li>使用远程的centos7 服务器上的python解释器</li>
+</ul>
+<p>Matplotlib会抛出下面的警告，然后用matplotlib画的图也无法显示了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UserWarning: Matplotlib is currently using agg, <span class="built_in">which</span> is a non-GUI backend, so cannot show the figure.</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="在服务器端的配置">在服务器端的配置</h2>
+<p>首先要检查服务器上的ssh协议是否正常运行，centos7的话是使用 <code>sudo vim /etc/ssh/sshd_config</code>来编辑ssh的配置文件，加入下面这样的两行。第一行是开启X11Forwarding，第二行是让默认的Display号为11。这个怎么理解呢？以我的使用场景为例，如果该服务器只有自己一个人用ssh的话，当你开启一个MobaXterm，通过ssh连接到服务器后，我本地电脑分配到的Display号默认就是11了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X11Forwarding yes</span><br><span class="line">X11DisplayOffset 11</span><br></pre></td></tr></table></figure>
+<h2 id="在本地机的配置">在本地机的配置</h2>
+<p>下面就是只在自己本地机上操作了，用MobaXterm建立ssh的连接（可以设置自动开启X11 Forwarding，这就体现出了它相比于分别操作Putty和X11 ming的优势)。MobaXterm要设置成下面这样，防止ssh休眠，并开启默认开启X11-Forwarding。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170025158.png" alt="image-20220610170025158" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170133246.png" alt="image-20220610170133246" style="zoom:80%;" />
+<p>这样设置好后，当用ssh连接后，会出现下面的信息：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170254450.png" alt="image-20220610170254450" style="zoom:80%;" />
+<p>让MobaXterm在后台运行着，这样用Pycharm才可以正常在本地显示figure。记得在Mobaxterm中键入 <code>echo $DISPLAY</code>来看本地的号，该号要与下面Pycharm中运行程序的配置文件中的设置的一致，如下图所示。若是这两个号不一致，那么你就会得到本文最开始时的Matplotlib警告信息。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/Snipaste_2022-06-10_17-06-31.jpg" alt="Snipaste_2022-06-10_17-06-31"></p>
+<p>搞定！</p>
 
       
     </div>
