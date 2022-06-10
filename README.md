@@ -7,5 +7,9 @@ hexo d 部署
 hexo s 用来本地查看网页
 
 Git命令：
-git pull origin hexo  将hexo分支从远端pull下来
+gst
+gaa
+gcz
 git push origin hexo  将hexo分支push到远端
+
+git pull origin hexo 

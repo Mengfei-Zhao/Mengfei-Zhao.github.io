@@ -1,6 +1,6 @@
 ---
 title: Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错
-date: 2021-06-10
+date: 2022-06-10
 comments: true
 categories:
 - Python
