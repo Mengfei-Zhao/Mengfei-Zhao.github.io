@@ -223,6 +223,118 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">Arduino舒适的开发环境搭建：vscode+arduino插件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-10-10 12:26:01" itemprop="dateCreated datePublished" datetime="2021-10-10T12:26:01+08:00">2021-10-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-05-07 16:07:35" itemprop="dateModified" datetime="2022-05-07T16:07:35+08:00">2022-05-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vscode/Arduino/" itemprop="url" rel="index"><span itemprop="name">Arduino</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<ul>
+<li>板卡：Arduino uno</li>
+<li>OS: win10</li>
+<li>开发环境：vscode + arduino插件</li>
+<li>工程作用：可以实现arduino的LED闪烁。</li>
+</ul>
+<hr>
+<p>安装Arduino插件：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007192010599.png" alt="image-20211007192010599" style="zoom:70%;" />
+<p>目录结构：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007192231896.png" alt="image-20211007192231896" style="zoom:67%;" />
+<h3 id="1、在vscode的用户配置文件settings-json中加入下面这些内容，用来对arduino插件做全局的默认配置：">1、在vscode的用户配置文件settings.json中加入下面这些内容，用来对arduino插件做全局的默认配置：</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;arduino.path&quot;</span>: <span class="string">&quot;G:\\Arduino&quot;</span>, <span class="comment">// arduino IDE安装的位置</span></span><br><span class="line"><span class="string">&quot;arduino.commandPath&quot;</span>: <span class="string">&quot;arduino_debug.exe&quot;</span>, <span class="comment">//这是一个上述位置中的exe文件</span></span><br><span class="line"><span class="string">&quot;C_Cpp.default.browse.path&quot;</span>: [ </span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\avr\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\variants\\standard\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\ArduinoPrj\\libraries\\**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;C_Cpp.default.includePath&quot;</span>: [ <span class="comment">//头文件引用路径</span></span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\avr\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\Arduino\\hardware\\arduino\\avr\\variants\\standard\\**&quot;</span>,</span><br><span class="line">  <span class="string">&quot;G:\\ArduinoPrj\\libraries\\**&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;arduino.logLevel&quot;</span>: <span class="string">&quot;info&quot;</span>,</span><br><span class="line"><span class="string">&quot;arduino.allowPDEFiletype&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.enableUSBDetection&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;arduino.disableTestingOpen&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.skipHeaderProvider&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;arduino.disableIntelliSenseAutoGen&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;arduino.additionalUrls&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;http://arduino.esp8266.com/stable/package_esp8266com_index.json&quot;</span></span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;arduino.defaultBaudRate&quot;</span>: <span class="number">115200</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="2、在-vscode文件夹下新建一个c-cpp-settings-json，并添加下面内容：">2、在.vscode文件夹下新建一个c_cpp_settings.json，并添加下面内容：</h3>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008094940783.png" alt="image-20211008094940783" style="zoom:80%;" />
+<p>上述中的includePath是需要认真设置的，这个不设置也行，在编写源文件时，会在#include的头文件下面出现红色波浪线，提示找不到文件之类的，例如下方这个。此时点击Quick Fix，把路径添加上就可以了，新添加的路径会自动出现在上方c_cpp_settings.json中的includePath中。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008095347411.png" alt="image-20211008095347411" style="zoom:80%;" />
+<h3 id="3、在-vscode文件夹下新建一个arduino-json，并添加下面内容：">3、在.vscode文件夹下新建一个arduino.json，并添加下面内容：</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sketch&quot;</span>: <span class="string">&quot;appMain.ino&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="string">&quot;COM10&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;board&quot;</span>: <span class="string">&quot;arduino:avr:uno&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;output&quot;</span>: <span class="string">&quot;./build&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;debugger&quot;</span>: <span class="string">&quot;jlink&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;intelliSenseGen&quot;</span>: <span class="string">&quot;global&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4、编写源文件">4、编写源文件</h3>
+<p>请在<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/utility">github</a>中下载。</p>
+<h3 id="5、编译烧录">5、编译烧录</h3>
+<p>写好源文件后，点击图中的A是编译，B是烧录，C是修改串口号，D是c_cpp_settings.json中的&quot;name&quot;</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211008100422545.png" alt="image-20211008100422545"></p>
+<h3 id="6、搞定">6、搞定</h3>
+<p><strong>工程文件有需要的话，请到<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/utility">Github</a>中下载</strong></p>
+<p><strong>另外，vscode-arduino官方的文档看这个<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino">链接</a>。</strong></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom:50%;" />
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -432,108 +544,6 @@
 <p>现在新建并编写自己的源文件即可。</p>
 <p><strong>最后：</strong></p>
 <img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom: 50%;" />
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head_portrait.jpg">
-      <meta itemprop="name" content="Mengfei">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/" class="post-title-link" itemprop="url">Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-06-10 17:16:00" itemprop="dateModified" datetime="2022-06-10T17:16:00+08:00">2022-06-10</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/Pycharm/" itemprop="url" rel="index"><span itemprop="name">Pycharm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>开发环境：</p>
-<ul>
-<li>本地环境win10,  Pycharm2021</li>
-<li>使用远程的centos7 服务器上的python解释器</li>
-</ul>
-<p>Matplotlib会抛出下面的警告，然后用matplotlib画的图也无法显示了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UserWarning: Matplotlib is currently using agg, <span class="built_in">which</span> is a non-GUI backend, so cannot show the figure.</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-<h2 id="在服务器端的配置">在服务器端的配置</h2>
-<p>首先要检查服务器上的ssh协议是否正常运行，centos7的话是使用 <code>sudo vim /etc/ssh/sshd_config</code>来编辑ssh的配置文件，加入下面这样的两行。第一行是开启X11Forwarding，第二行是让默认的Display号为11。这个怎么理解呢？以我的使用场景为例，如果该服务器只有自己一个人用ssh的话，当你开启一个MobaXterm，通过ssh连接到服务器后，我本地电脑分配到的Display号默认就是11了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X11Forwarding yes</span><br><span class="line">X11DisplayOffset 11</span><br></pre></td></tr></table></figure>
-<h2 id="在本地机的配置">在本地机的配置</h2>
-<p>下面就是只在自己本地机上操作了，用MobaXterm建立ssh的连接（可以设置自动开启X11 Forwarding，这就体现出了它相比于分别操作Putty和X11 ming的优势)。MobaXterm要设置成下面这样，防止ssh休眠，并开启默认开启X11-Forwarding。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170025158.png" alt="image-20220610170025158" style="zoom:80%;" />
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170133246.png" alt="image-20220610170133246" style="zoom:80%;" />
-<p>这样设置好后，当用ssh连接后，会出现下面的信息：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220610170254450.png" alt="image-20220610170254450" style="zoom:80%;" />
-<p>让MobaXterm在后台运行着，这样用Pycharm才可以正常在本地显示figure。记得在Mobaxterm中键入 <code>echo $DISPLAY</code>来看本地的号，该号要与下面Pycharm中运行程序的配置文件中的设置的一致，如下图所示。若是这两个号不一致，那么你就会得到本文最开始时的Matplotlib警告信息。</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/Snipaste_2022-06-10_17-06-31.jpg" alt="Snipaste_2022-06-10_17-06-31"></p>
-<p>搞定！</p>
 
       
     </div>
