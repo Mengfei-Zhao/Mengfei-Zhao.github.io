@@ -87,7 +87,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">14</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,6 +214,89 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2022/08/12/Blog/PCB/AD_PCB%E5%A4%84%E7%90%86%E6%9C%80%E5%90%8EGND%E4%BB%A5%E5%8F%8A%E9%93%BA%E9%93%9C%E7%BB%8F%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/12/Blog/PCB/AD_PCB%E5%A4%84%E7%90%86%E6%9C%80%E5%90%8EGND%E4%BB%A5%E5%8F%8A%E9%93%BA%E9%93%9C%E7%BB%8F%E9%AA%8C/" class="post-title-link" itemprop="url">AD软件 PCB处理最后GND以及铺铜经验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-12 00:00:00 / Modified: 18:01:12" itemprop="dateCreated datePublished" datetime="2022-08-12T00:00:00+08:00">2022-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PCB/" itemprop="url" rel="index"><span itemprop="name">PCB</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言：">前言：</h2>
+<p>当PCB已经走完其他的线后，就只剩下GND线了。如果什么都不管，直接给所有层都铺上GND的铜的话，当你进行<strong>未连接的走线</strong>检查时，会发现仍旧有一些GND的线没有连上，即仍然显示飞线。这是因为这些GND的焊盘在一些孤岛中，就算你打上GND的小过孔，这些孤岛也连不上。下面讲讲如何处理。</p>
+<p><strong>环境介绍：</strong> AD20</p>
+<h2 id="正文：">正文：</h2>
+<p>先给那些仍旧有飞线的的GND的焊盘都引出来一点线，然后打一个过孔，就像下面这样。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220812174006978.png" alt="image-20220812174006978" style="zoom:50%;" />
+<p>然后选一个合适的层来把上面的小焊盘通过走线连接到孤岛外面的GND上去。</p>
+<p>之后 <code>T-G-A </code>重新铺所有层的GND铜，再 <code>T-D-R</code>运行DRC，检查还剩下哪些飞线没有处理。直到处理完所有的飞线。</p>
+<p>最后 <code>R-B</code>，只勾选Routing Information，点击Report，来检查连线情况。若是100%了，就OK了。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220812175807896.png" alt="image-20220812175807896" style="zoom:67%;" />
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1094,150 +1177,6 @@
 <p>放好via阵列的样子：</p>
 <img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" />
 <p>之后将铜皮取消隐藏即可，并布置丝印层。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head_portrait.jpg">
-      <meta itemprop="name" content="Mengfei">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/" class="post-title-link" itemprop="url">ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-10-10 13:26:01" itemprop="dateCreated datePublished" datetime="2021-10-10T13:26:01+08:00">2021-10-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-05-07 16:07:35" itemprop="dateModified" datetime="2022-05-07T16:07:35+08:00">2022-05-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ZYNQ/" itemprop="url" rel="index"><span itemprop="name">ZYNQ</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1、环境介绍：">1、环境介绍：</h2>
-<ul>
-<li>ZYNQ-7000 MZ7XA板卡</li>
-<li>vivado 2020.1</li>
-<li>vitis 2020.1</li>
-</ul>
-<h2 id="2、正文：">2、正文：</h2>
-<p>首先介绍一下<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6/101053?fr=aladdin">镜像</a>这个概念，下面是百度百科中的解释：</p>
-<blockquote>
-<p>所谓镜像文件其实和rar ZIP压缩包类似，它将特定的一系列文件按照一定的格式制作成单一的文件，以方便用户下载和使用，例如一个操作系统、游戏等。它最重要的特点是可以被特定的软件识别并可直接刻录到<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%89%E7%9B%98/170215">光盘</a>上。其实通常意义上的镜像文件可以再扩展一下，在镜像文件中可以包含更多的信息。比如说系统文件、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%BC%95%E5%AF%BC%E6%96%87%E4%BB%B6/659617">引导文件</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%88%86%E5%8C%BA%E8%A1%A8/215102">分区表</a>信息等，这样镜像文件就可以包含一个分区甚至是一块硬盘的所有信息。</p>
-</blockquote>
-<p>额，理解了镜像的概念，接下来以在vivado vitis工程中的实际操作中学习BOOT.bin  fsbl等内容。</p>
-<h3 id="vivado工程方面：">vivado工程方面：</h3>
-<p>配置一下PS，生成一个HDL Wrapper.v，然后在Wrapper.v文件中加入一段4bit流水灯的代码，代码如下：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162341338.png" alt="image-20211002162341338" style="zoom:67%;" />
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162649052.png" alt="image-20211002162649052" style="zoom:70%;" />
-<p>然后生成.bit文件，导出xsa文件，接下在切换到vitis开发。</p>
-<h3 id="vitis工程方面：">vitis工程方面：</h3>
-<p>新建一个硬件工程，命名为<code>run_led_hw_platform</code></p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002163328456.png" alt="image-20211002163328456" style="zoom:67%;" />
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002163622228.png" alt="image-20211002163622228" style="zoom:80%;" />
-<p>指定刚vivado生成的xsa文件，上图中记得勾选Generate boot components，这个会在生成的硬件工程中产生一个zynq_fsbl文件夹，打开会发现有一堆fsbl相关的源文件，编译一下整个硬件工程，就会在下面图二的1处产生一个fsbl.elf文件。</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164114451.png" alt="image-20211002164114451"></p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164030549.png" alt="image-20211002164030549"></p>
-<p>接下来新建一个helloWorld的应用工程，命名为<code>helloWorld</code>，并编译一下。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164344390.png" alt="image-20211002164344390" style="zoom:80%;" />
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002164607517.png" alt="image-20211002164607517"></p>
-<p>接下来讲一下当我们成功固化程序到flash中后，ZYNQ板子启动的过程。</p>
-<ul>
-<li>
-<p>ZYNQ内部的BootROM存储有一段在CPU复位后固定执行的代码。称为stage-0启动代码。（这个ROM中的代码，掉电不丢失）</p>
-</li>
-<li>
-<p>这段代码用来配置一个ARM CPU和一些必要外设，从而能从一个启动设备中获取FSBL（first stage boot loader）执行。BootROM是一个ROM，不可写，PL的配置不是通过BootROM实现的。BootROM不能使用DDR和SCU，因为它们还没有初始化。</p>
-</li>
-<li>
-<p>BOOT.bin是一个镜像文件，我们这里是将它存储在外部的QSPI-Flash中，BOOT.bin包含有fsbl.elf，PL部分配置文件（.bit)，应用工程的可执行二进制文件（helloWorld.elf文件）</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/20200626232927148.png" alt=" "></p>
-</li>
-<li>
-<p>当BootROM把flash中BOOT.bin中的fsbl装载到OCM后，接下来就开始执行fsbl了。</p>
-</li>
-<li>
-<p>fsbl负责下面这些：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002172924391.png" alt="image-20211002172924391" style="zoom:80%;" />
-<p>对于基于zynq的嵌入式Linux系统，BootROM引导启动FSBL，FSBL引导启动U-Boot，U-boot引导启动Linux内核。</p>
-</li>
-</ul>
-<p>理解了上面这些，接下来继续创建Boot Image。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002171139341.png" alt="image-20211002171139341" style="zoom:80%;" />
-<p>上图中出现了好多文件，它们的关系详情请参考ug821的boot章节，这个BOOT.bin就是需要制作出来的镜像文件，它里面包含有下面fsbl.elf，run_lef.bit，helloWorld.elf文件。至于上面的helloWorld.bif文件，它是一个Boot Image Format 文件，用于制作BOOT.bin用的。</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002173806240.png" alt="image-20211002173806240"></p>
-<p>制作好BOOT.bin后，接下来把它烧录到QSPI-Flash中：</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174044195.png" alt="image-20211002174044195"></p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174241139.png" alt="image-20211002174241139" style="zoom:90%;" />
-<p>在consol窗口中出现一系列消息后，就成功了。</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174408697.png" alt="image-20211002174408697"></p>
-<p>此时打开一个串口窗口，对板子重新上电，可看到流水灯在闪烁，串口打印成功。</p>
-<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002174626648.png" alt="image-20211002174626648"></p>
-<h2 id="3、参考文献：">3、参考文献：</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jinry001/article/details/99693549">米联客教程</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/asd1147170607/article/details/106976572">ZYNQ_FSBL学习</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43445577/article/details/113846028">zynq中的BootROM</a></li>
-</ul>
 
       
     </div>
