@@ -49,29 +49,19 @@
 {%- endif %}
 
 {%- if theme.busuanzi_count.enable %}
-<div class="busuanzi-count">
-  {%- if theme.busuanzi_count.total_visitors %}
-    <span class="post-meta-item" id="busuanzi_container_site_uv">
-      <span class="post-meta-item-icon">
-        <i class="{{ theme.busuanzi_count.total_visitors_icon }}"></i>
-      </span>
-      <span class="site-uv" title="{{ __('footer.total_visitors') }}">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
+  <span id="busuanzi_container_site_pv">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
     </span>
-  {%- endif %}
+    访问量：<span id="busuanzi_value_site_pv"></span> 次数
+  </span>
 
-  {%- if theme.busuanzi_count.total_views %}
-    <span class="post-meta-item" id="busuanzi_container_site_pv">
-      <span class="post-meta-item-icon">
-        <i class="{{ theme.busuanzi_count.total_views_icon }}"></i>
-      </span>
-      <span class="site-pv" title="{{ __('footer.total_views') }}">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
+  <span id="busuanzi_container_site_uv">
+    <span class="post-meta-divider">
+      <i class="fa fa-user"></i>
     </span>
-  {%- endif %}
-</div>
+    访客数：<span id="busuanzi_value_site_uv"></span> 人次
+  </span>
 {%- endif %}
 
 {%- if theme.footer.powered %}

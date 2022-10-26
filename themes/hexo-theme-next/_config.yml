@@ -218,6 +218,9 @@ footer:
     # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
     gongan_icon_url:
 
+  # Count the number of visitor
+  counter: true 
+
 # ---------------------------------------------------------------
 # Post Settings
 # See: https://theme-next.js.org/docs/theme-settings/posts
@@ -361,7 +364,7 @@ codeblock:
     dark: prism-dark
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Available values: default | flat | mac
     style:
 
@@ -633,7 +636,7 @@ valine:
   enable: false
   appid: xwacApm2OhBY9PgLoeyPoFAu-gzGzoHsz # your leancloud application appid
   appkey: 0mB1aBPrNE83WebiQOcljrIL # your leancloud application appkey
-  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
+  notify: true # mail notifier, See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   serverURLs: # When the custom domain name is enabled, fill it in here
   placeholder: 来啊，快活啊！ # comment box placeholder
@@ -714,7 +717,7 @@ firestore:
 # Show Views / Visitors of the website / page with busuanzi.
 # For more information: http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: fa fa-user
   total_views: true
@@ -889,3 +892,6 @@ cursor_effect:
   enabled: true
   type: love # fireworks：礼花 | explosion：爆炸 | love：浮出爱心 | text：浮出文字
 
+
+# Used for SEO 
+baidu_push: true 

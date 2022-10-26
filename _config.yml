@@ -14,8 +14,7 @@ timezone: ""
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-# url: https://Mengfei-Zhao.github.io/
-url: https://www.zhaomengfei.xyz/
+url: https://Mengfei-Zhao.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -49,7 +48,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ""
   wrap: true
   hljs: false
@@ -119,6 +118,7 @@ deploy:
     github: https://github.com/Mengfei-Zhao/Mengfei-Zhao.github.io
     # coding: https://e.coding.net/zhaomengfei/personalwebsite/hexoblog.git,master
   branch: master
+  -type: baidu_url_submitter
 
 ## markdown 渲染引擎配置，默认是hexo-renderer-marked，这个插件渲染速度更快，且有新特性
 markdown:
@@ -148,3 +148,15 @@ search:
   field: post
   format: html
   limit: 1000
+
+# Used for SEO
+
+baidu_url_submit:
+  count: 100 # 提交最新的一个链接
+  host: https://Mengfei-Zhao.github.io # 在百度站长平台中注册的域名
+  token: xYwK59HvXPeLGPWm #
+  path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里
+
+# Auto generate sitemap
+# sitemap:
+#   path: sitemap.xml
