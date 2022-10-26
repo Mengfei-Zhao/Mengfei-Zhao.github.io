@@ -87,7 +87,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,6 +214,109 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2022/10/26/Blog/Python/How_to_release_software_of_Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/26/Blog/Python/How_to_release_software_of_Python/" class="post-title-link" itemprop="url">How to release software of Python？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-10-26 00:00:00 / Modified: 10:37:06" itemprop="dateCreated datePublished" datetime="2022-10-26T00:00:00+08:00">2022-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>如何打包并发布一款用Python写的软件？</p>
+<p>开发环境： win10,  Pycharm2021</p>
+<p>用到的工具：pyinstaller, NSIS</p>
+<h2 id="pyinstaller打包项目">pyinstaller打包项目</h2>
+<p>利用Pyinstaller打包整个python工程，它会将项目所用到的所有依赖包打包在一起。这里通过 <code>release.spec</code>文件进行配置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"># -*- mode: python ; coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line"># 这里将需要用到的resources文件添加一下，不要把自己的源码路径给添加进去了，否则你会在打包好的文件夹下看到自己的源码工程，当然如果你想要开源的话，那就没关系了。</span><br><span class="line">added_files = [</span><br><span class="line">(&quot;project_relative_path\\resources&quot;, &quot;project_relative_path\\resources&quot;),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># 这里是为了给软件加密，pyinstaller只能加密Python Bytecode，一定要搞清楚什么是Bytecode，也即pyinstaller并不会给python源码加密。这里有一个比较复杂的点，那就是安装加密用的pycrypto包，后面我会单独讲。</span><br><span class="line">block_cipher = pyi_crypto.PyiBlockCipher(key=&#x27;1234567812345678&#x27;)</span><br><span class="line"></span><br><span class="line">a = Analysis(</span><br><span class="line">    [&#x27;main.py&#x27;],  # 程序的入口</span><br><span class="line">    pathex=[],</span><br><span class="line">    binaries=[],</span><br><span class="line">    datas=added_files,</span><br><span class="line">    hiddenimports=[],</span><br><span class="line">    hookspath=[],</span><br><span class="line">    hooksconfig=&#123;&#125;,</span><br><span class="line">    runtime_hooks=[],</span><br><span class="line">    excludes=[],</span><br><span class="line">    win_no_prefer_redirects=False,</span><br><span class="line">    win_private_assemblies=False,</span><br><span class="line">    cipher=block_cipher,</span><br><span class="line">    noarchive=False,</span><br><span class="line">)</span><br><span class="line">pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)</span><br><span class="line"></span><br><span class="line">exe = EXE(</span><br><span class="line">    pyz,</span><br><span class="line">    a.scripts,</span><br><span class="line">    [],</span><br><span class="line">    exclude_binaries=True,</span><br><span class="line">    name=&#x27;name_of_program&#x27;,</span><br><span class="line">    debug=False,</span><br><span class="line">    bootloader_ignore_signals=False,</span><br><span class="line">    strip=False,</span><br><span class="line">    upx=True,</span><br><span class="line">    console=False,</span><br><span class="line">    disable_windowed_traceback=False,</span><br><span class="line">    argv_emulation=False,</span><br><span class="line">    target_arch=None,</span><br><span class="line">    codesign_identity=None,</span><br><span class="line">    entitlements_file=None,</span><br><span class="line">    icon=&quot;absolute_path_of_logo.png&quot;  # 这里给.exe加一个logo</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># onedir</span><br><span class="line">coll = COLLECT(</span><br><span class="line">    exe,</span><br><span class="line">    a.binaries,</span><br><span class="line">    a.zipfiles,</span><br><span class="line">    a.datas,</span><br><span class="line">    strip=False,</span><br><span class="line">    upx=True,</span><br><span class="line">    upx_exclude=[],</span><br><span class="line">    name=&#x27;name_of_program&#x27;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>写好上面的 <code>release.spec</code>文件后，然后在终端相应的目录执行 <code>pyinstaller .\release.spec</code>，便可以对项目进行打包了。上面不懂的地方去看官方文档吧。下面有一个例子，读者可以看一下。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/cztomczak/cefpython/blob/master/examples/pyinstaller/pyinstaller.spec">链接1</a></p>
+<h2 id="安装pyinstaller加密用的pycrypto包">安装pyinstaller加密用的pycrypto包</h2>
+<p>注意，我试过网上说的<strong>PyCryptodome</strong>，但是并没有成功。还是得安装pyisntaller指定的pycrypto包才行。我的win10+python3.8.5在用虚拟环境中的pip3安装pycrypto包时，遇到了报错。解决办法参考 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/41843266/microsoft-windows-python-3-6-pycrypto-installation-error?answertab=votes#tab-top">链接2</a>，看下面这个回答。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026093734333.png" alt="image-20221026093734333"></p>
+<h2 id="NSIS制作软件安装、卸载界面">NSIS制作软件安装、卸载界面</h2>
+<p>先看一下这个<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=UZX5kH72Yx4&amp;ab_channel=TechWithTim">视频教程</a>。要是使用最简单的安装，即只有一个路径选择，那么视频里已经讲了。若是想使用高级一点的安装、卸载，则要用脚本的形式，即写一个.nsi文件。这个.nsi文件在编译完可以生成一个.exe的文件，双击这个生成的.exe就可以进行程序的安装了。</p>
+<p>下面讲一个demo。</p>
+<p>写 <code>Program_Name.nsi</code>文件，代码如下。该文件的书写需要与实际的安装和卸载过程结合起来，多尝试几次就明白代码的语法了。</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; Program_Name.nsi</span></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; The name of the installer</span></span><br><span class="line"><span class="keyword">Name</span> <span class="string">&quot;Program_Name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; The file to write</span></span><br><span class="line"><span class="keyword">OutFile</span> <span class="string">&quot;Install_Program_Name.exe&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Request application privileges for Windows Vista and higher</span></span><br><span class="line"><span class="keyword">RequestExecutionLevel</span> <span class="literal">user</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Build Unicode installer</span></span><br><span class="line"><span class="keyword">Unicode</span> True</span><br><span class="line"></span><br><span class="line"><span class="comment">; The default installation directory</span></span><br><span class="line"><span class="keyword">InstallDir</span> <span class="variable">$PROGRAMFILES</span>\Program_Name</span><br><span class="line"></span><br><span class="line"><span class="comment">; Registry key to check for directory (so if you install again, it will </span></span><br><span class="line"><span class="comment">; overwrite the old one automatically)</span></span><br><span class="line"><span class="keyword">InstallDirRegKey</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Program_Name&quot;</span> <span class="string">&quot;Install_Dir&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Pages</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Page</span> <span class="literal">components</span></span><br><span class="line"><span class="keyword">Page</span> <span class="literal">directory</span></span><br><span class="line"><span class="keyword">Page</span> <span class="literal">instfiles</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UninstPage</span> <span class="literal">uninstConfirm</span></span><br><span class="line"><span class="keyword">UninstPage</span> <span class="literal">instfiles</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; The stuff to install</span></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Program_Name (required)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">SectionIn</span> RO</span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Set output path to the installation directory.</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="variable">$INSTDIR</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Put file there. Program_Name is the folder name that you wanna release, this is rightly the folder that pyinstaller packaged.</span></span><br><span class="line">  <span class="keyword">File</span> /r Program_Name\*.*</span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Write the installation path into the registry</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> SOFTWARE\Program_Name <span class="string">&quot;Install_Dir&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Write the uninstall keys for Windows</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;DisplayName&quot;</span> <span class="string">&quot;Program_Name&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;UninstallString&quot;</span> <span class="string">&#x27;&quot;<span class="variable">$INSTDIR</span>\uninstall.exe&quot;&#x27;</span></span><br><span class="line">  <span class="keyword">WriteRegDWORD</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;NoModify&quot;</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">WriteRegDWORD</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;NoRepair&quot;</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">WriteUninstaller</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\uninstall.exe&quot;</span></span><br><span class="line">  </span><br><span class="line">SectionEnd</span><br><span class="line"></span><br><span class="line"><span class="comment">; Optional section (can be disabled by the user)</span></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Start Menu Shortcuts&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">CreateDirectory</span> <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name&quot;</span></span><br><span class="line">  CreateShortcut <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name\Uninstall.lnk&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\uninstall.exe&quot;</span></span><br><span class="line">  CreateShortcut <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name\Program_Name.lnk&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\Program_Name.exe&quot;</span></span><br><span class="line"></span><br><span class="line">SectionEnd</span><br><span class="line"></span><br><span class="line"><span class="comment">; Optional section (can be disabled by the user)</span></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Desktop Shortcut&quot; SectionX</span></span><br><span class="line">    <span class="keyword">SetShellVarContext</span> <span class="literal">current</span></span><br><span class="line">    <span class="keyword">CreateShortCut</span> <span class="string">&quot;<span class="variable">$DESKTOP</span>\Program_Name.lnk&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\Program_Name.exe&quot;</span></span><br><span class="line">SectionEnd</span><br><span class="line"></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Uninstaller</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Uninstall&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Remove registry keys</span></span><br><span class="line">  <span class="keyword">DeleteRegKey</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span></span><br><span class="line">  <span class="keyword">DeleteRegKey</span> <span class="params">HKLM</span> SOFTWARE\Program_Name</span><br><span class="line"></span><br><span class="line">  <span class="comment">; Remove all files in INSTDIR</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="variable">$INSTDIR</span>\*.*</span><br><span class="line"></span><br><span class="line">  <span class="comment">; Remove all shortcuts, if any</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name\*.lnk&quot;</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable">$DESKTOP</span>\*.lnk&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">; Remove directories</span></span><br><span class="line">  <span class="keyword">RMDir</span> <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line">SectionEnd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>将 <code>Program_Name.nsi</code>放到与Program_name项目包的同一级，如下图所示。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026095511802.png" alt="image-20221026095511802" style="zoom:80%;" />
+<p>右击 <code>Program_Name.nsi</code>，点击Compile。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026100645595.png" alt="image-20221026100645595" style="zoom:67%;" />
+<p>然后点击Test Installer，可以测试一下，也可以选择Close。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026100839406.png" alt="image-20221026100839406" style="zoom:67%;" />
+<p>你会发现在当前文件夹下生成了一个 <code>Install_Program_Name.exe</code>，这个就是程序的安装文件。下面双击它进行安装。先勾选一些功能，然后选择安装路径，点击安装。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026101025597.png" alt="image-20221026101025597" style="zoom:80%;" />
+<p>安装好了以后会在 <code>Install_Dir</code>文件夹下释放下面的文件：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026101319360.png" alt="image-20221026101319360" style="zoom:80%;" />
+<p>并且在桌面和开始菜单会生成快捷方式。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026102328741.png" alt="image-20221026102328741" style="zoom:80%;" /><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026102341839.png" alt="image-20221026102341839"></p>
+<p>若要卸载的话，双击那个 <code>uninstall.exe</code>即可。</p>
+<p>我把这个demo上传到<a target="_blank" rel="noopener" href="https://github.com/Mengfei-Zhao/nsis_demo">github</a>了，需要的同学自取吧，记得给个星哦。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1070,113 +1173,6 @@
 <img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211015225807361.png" alt="image-20211015225807361" style="zoom:50%;" />
 <p>然后选中这个<strong>四分之一圆弧</strong>，以通孔圆心为参考点，复制，粘贴处其余3个角。</p>
 <p>搞定！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head_portrait.jpg">
-      <meta itemprop="name" content="Mengfei">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mengfei's Personal Website">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/" class="post-title-link" itemprop="url">AD软件方便的铺铜，并放置via阵列</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-12T00:00:00+08:00">2021-10-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-05-07 16:07:35" itemprop="dateModified" datetime="2022-05-07T16:07:35+08:00">2022-05-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PCB/" itemprop="url" rel="index"><span itemprop="name">PCB</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前言：">前言：</h2>
-<p><strong>环境介绍：</strong>  AD20</p>
-<p><strong>目的：</strong>  将PCB两面都铺上GND的铜，并放置via阵列。</p>
-<h2 id="正文：">正文：</h2>
-<h3 id="方式一：">方式一：</h3>
-<p>当把板子都布局，布好线后，需要铺铜时，<code>P-&gt;G</code>，然后选择铺铜的区域，围绕板子四周画一个矩形，画好后，鼠标右键2下，铺铜。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164220558.png" alt="image-20211012164220558" style="zoom:67%;" />
-<p>铺好后手动去除板子四个角外部的铜，如下图所示，选择Polygon Pour Cutout，然后把不想要的铜圈起来即可。选中铜皮，将其设置为连接到GND net上。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012164527955.png" alt="image-20211012164527955" style="zoom:67%;" />
-<p>上面只是铺好了top layer的铜皮，下面来铺bottom layer的。选中top layer的铜皮，ctrl+c，然后鼠标左键点击一下我们设置好的origin point，切换到bottom layer，选择special paste，然后对话框设置一下，之后再选择一次origin point即可。之后可以再按照上述方式去除一下keep out外面的死铜。当然也可以在铺铜的设置选项里勾选“去除死铜”，但是这样会把板子里面的死铜也给去除掉（一般需要去除死铜），读者根据需要来选择吧。</p>
-<img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165114319.png" alt="image-20211012165114319" style="zoom:80%;" />
-<h3 id="方式二：">方式二：</h3>
-<p>当需要画多层板时，有时需要在每一层都铺上铜（前提是内电层是middle layer，不是plane，因为middle layer可以进行铺铜）。按照下面的方法操作：</p>
-<ul>
-<li>先在top layer铺上铜，按快捷键<code>T-G-M</code>进入Polygon Pour Manager，在这里面批量添加铺铜，并设置各个层的Net和名称。</li>
-<li>注意：放设置完每一层的Properties信息，想要Apply一下（不用点击OK)，然后再在此窗口中点击Repour操作，否则会出现自己修改完了信息，但是铺铜时发现未识别到刚修改的那一层。</li>
-</ul>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211017144145209.png" alt="image-20211017144145209" style="zoom:60%;" />
-<h3 id="放置via阵列：">放置via阵列：</h3>
-<p>下面开始放置一些小的via阵列，首先将“铜皮”隐藏，放置干扰我们视野。方法：ctrl+D，在view configuration窗口中隐藏Polygons。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165745814.png" alt="image-20211012165745814" style="zoom:80%;" />
-<p>开始放置via阵列：</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012165946987.png" alt="image-20211012165946987" style="zoom:80%;" />
-<p>先设置一下Net为GND，然后去勾选左上角的Constrain Area来选择放置的区域，根据需要设置间距，大小之类的参数。</p>
-<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170045704.png" alt="image-20211012170045704" style="zoom:80%;" />
-<p>放好via阵列的样子：</p>
-<img src="http://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211012170315201.png" alt="image-20211012170315201" style="zoom:67%;" />
-<p>之后将铜皮取消隐藏即可，并布置丝印层。</p>
 
       
     </div>
