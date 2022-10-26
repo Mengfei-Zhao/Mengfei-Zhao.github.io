@@ -3,11 +3,11 @@
   <title>Mengfei&#39;s Personal Website</title>
   
   <subtitle>Blogs &amp; Notes</subtitle>
-  <link href="https://www.zhaomengfei.xyz/atom.xml" rel="self"/>
+  <link href="https://mengfei-zhao.github.io/atom.xml" rel="self"/>
   
-  <link href="https://www.zhaomengfei.xyz/"/>
-  <updated>2022-10-26T02:37:06.057Z</updated>
-  <id>https://www.zhaomengfei.xyz/</id>
+  <link href="https://mengfei-zhao.github.io/"/>
+  <updated>2022-10-26T02:48:52.422Z</updated>
+  <id>https://mengfei-zhao.github.io/</id>
   
   <author>
     <name>Mengfei</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>How to release software of Python？</title>
-    <link href="https://www.zhaomengfei.xyz/2022/10/26/Blog/Python/How_to_release_software_of_Python/"/>
-    <id>https://www.zhaomengfei.xyz/2022/10/26/Blog/Python/How_to_release_software_of_Python/</id>
+    <link href="https://mengfei-zhao.github.io/2022/10/26/Blog/Python/How_to_release_software_of_Python/"/>
+    <id>https://mengfei-zhao.github.io/2022/10/26/Blog/Python/How_to_release_software_of_Python/</id>
     <published>2022-10-25T16:00:00.000Z</published>
-    <updated>2022-10-26T02:37:06.057Z</updated>
+    <updated>2022-10-26T02:48:52.422Z</updated>
     
     <content type="html"><![CDATA[<p>如何打包并发布一款用Python写的软件？</p><p>开发环境： win10,  Pycharm2021</p><p>用到的工具：pyinstaller, NSIS</p><h2 id="pyinstaller打包项目">pyinstaller打包项目</h2><p>利用Pyinstaller打包整个python工程，它会将项目所用到的所有依赖包打包在一起。这里通过 <code>release.spec</code>文件进行配置。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"># -*- mode: python ; coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line"># 这里将需要用到的resources文件添加一下，不要把自己的源码路径给添加进去了，否则你会在打包好的文件夹下看到自己的源码工程，当然如果你想要开源的话，那就没关系了。</span><br><span class="line">added_files = [</span><br><span class="line">(&quot;project_relative_path\\resources&quot;, &quot;project_relative_path\\resources&quot;),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># 这里是为了给软件加密，pyinstaller只能加密Python Bytecode，一定要搞清楚什么是Bytecode，也即pyinstaller并不会给python源码加密。这里有一个比较复杂的点，那就是安装加密用的pycrypto包，后面我会单独讲。</span><br><span class="line">block_cipher = pyi_crypto.PyiBlockCipher(key=&#x27;1234567812345678&#x27;)</span><br><span class="line"></span><br><span class="line">a = Analysis(</span><br><span class="line">    [&#x27;main.py&#x27;],  # 程序的入口</span><br><span class="line">    pathex=[],</span><br><span class="line">    binaries=[],</span><br><span class="line">    datas=added_files,</span><br><span class="line">    hiddenimports=[],</span><br><span class="line">    hookspath=[],</span><br><span class="line">    hooksconfig=&#123;&#125;,</span><br><span class="line">    runtime_hooks=[],</span><br><span class="line">    excludes=[],</span><br><span class="line">    win_no_prefer_redirects=False,</span><br><span class="line">    win_private_assemblies=False,</span><br><span class="line">    cipher=block_cipher,</span><br><span class="line">    noarchive=False,</span><br><span class="line">)</span><br><span class="line">pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)</span><br><span class="line"></span><br><span class="line">exe = EXE(</span><br><span class="line">    pyz,</span><br><span class="line">    a.scripts,</span><br><span class="line">    [],</span><br><span class="line">    exclude_binaries=True,</span><br><span class="line">    name=&#x27;name_of_program&#x27;,</span><br><span class="line">    debug=False,</span><br><span class="line">    bootloader_ignore_signals=False,</span><br><span class="line">    strip=False,</span><br><span class="line">    upx=True,</span><br><span class="line">    console=False,</span><br><span class="line">    disable_windowed_traceback=False,</span><br><span class="line">    argv_emulation=False,</span><br><span class="line">    target_arch=None,</span><br><span class="line">    codesign_identity=None,</span><br><span class="line">    entitlements_file=None,</span><br><span class="line">    icon=&quot;absolute_path_of_logo.png&quot;  # 这里给.exe加一个logo</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># onedir</span><br><span class="line">coll = COLLECT(</span><br><span class="line">    exe,</span><br><span class="line">    a.binaries,</span><br><span class="line">    a.zipfiles,</span><br><span class="line">    a.datas,</span><br><span class="line">    strip=False,</span><br><span class="line">    upx=True,</span><br><span class="line">    upx_exclude=[],</span><br><span class="line">    name=&#x27;name_of_program&#x27;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>写好上面的 <code>release.spec</code>文件后，然后在终端相应的目录执行 <code>pyinstaller .\release.spec</code>，便可以对项目进行打包了。上面不懂的地方去看官方文档吧。下面有一个例子，读者可以看一下。</p><p><a href="https://github.com/cztomczak/cefpython/blob/master/examples/pyinstaller/pyinstaller.spec">链接1</a></p><h2 id="安装pyinstaller加密用的pycrypto包">安装pyinstaller加密用的pycrypto包</h2><p>注意，我试过网上说的<strong>PyCryptodome</strong>，但是并没有成功。还是得安装pyisntaller指定的pycrypto包才行。我的win10+python3.8.5在用虚拟环境中的pip3安装pycrypto包时，遇到了报错。解决办法参考 <a href="https://stackoverflow.com/questions/41843266/microsoft-windows-python-3-6-pycrypto-installation-error?answertab=votes#tab-top">链接2</a>，看下面这个回答。</p><p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026093734333.png" alt="image-20221026093734333"></p><h2 id="NSIS制作软件安装、卸载界面">NSIS制作软件安装、卸载界面</h2><p>先看一下这个<a href="https://www.youtube.com/watch?v=UZX5kH72Yx4&amp;ab_channel=TechWithTim">视频教程</a>。要是使用最简单的安装，即只有一个路径选择，那么视频里已经讲了。若是想使用高级一点的安装、卸载，则要用脚本的形式，即写一个.nsi文件。这个.nsi文件在编译完可以生成一个.exe的文件，双击这个生成的.exe就可以进行程序的安装了。</p><p>下面讲一个demo。</p><p>写 <code>Program_Name.nsi</code>文件，代码如下。该文件的书写需要与实际的安装和卸载过程结合起来，多尝试几次就明白代码的语法了。</p><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; Program_Name.nsi</span></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; The name of the installer</span></span><br><span class="line"><span class="keyword">Name</span> <span class="string">&quot;Program_Name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; The file to write</span></span><br><span class="line"><span class="keyword">OutFile</span> <span class="string">&quot;Install_Program_Name.exe&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Request application privileges for Windows Vista and higher</span></span><br><span class="line"><span class="keyword">RequestExecutionLevel</span> <span class="literal">user</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Build Unicode installer</span></span><br><span class="line"><span class="keyword">Unicode</span> True</span><br><span class="line"></span><br><span class="line"><span class="comment">; The default installation directory</span></span><br><span class="line"><span class="keyword">InstallDir</span> <span class="variable">$PROGRAMFILES</span>\Program_Name</span><br><span class="line"></span><br><span class="line"><span class="comment">; Registry key to check for directory (so if you install again, it will </span></span><br><span class="line"><span class="comment">; overwrite the old one automatically)</span></span><br><span class="line"><span class="keyword">InstallDirRegKey</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Program_Name&quot;</span> <span class="string">&quot;Install_Dir&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Pages</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Page</span> <span class="literal">components</span></span><br><span class="line"><span class="keyword">Page</span> <span class="literal">directory</span></span><br><span class="line"><span class="keyword">Page</span> <span class="literal">instfiles</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UninstPage</span> <span class="literal">uninstConfirm</span></span><br><span class="line"><span class="keyword">UninstPage</span> <span class="literal">instfiles</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; The stuff to install</span></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Program_Name (required)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">SectionIn</span> RO</span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Set output path to the installation directory.</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="variable">$INSTDIR</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Put file there. Program_Name is the folder name that you wanna release, this is rightly the folder that pyinstaller packaged.</span></span><br><span class="line">  <span class="keyword">File</span> /r Program_Name\*.*</span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Write the installation path into the registry</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> SOFTWARE\Program_Name <span class="string">&quot;Install_Dir&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Write the uninstall keys for Windows</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;DisplayName&quot;</span> <span class="string">&quot;Program_Name&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;UninstallString&quot;</span> <span class="string">&#x27;&quot;<span class="variable">$INSTDIR</span>\uninstall.exe&quot;&#x27;</span></span><br><span class="line">  <span class="keyword">WriteRegDWORD</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;NoModify&quot;</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">WriteRegDWORD</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span> <span class="string">&quot;NoRepair&quot;</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">WriteUninstaller</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\uninstall.exe&quot;</span></span><br><span class="line">  </span><br><span class="line">SectionEnd</span><br><span class="line"></span><br><span class="line"><span class="comment">; Optional section (can be disabled by the user)</span></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Start Menu Shortcuts&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">CreateDirectory</span> <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name&quot;</span></span><br><span class="line">  CreateShortcut <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name\Uninstall.lnk&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\uninstall.exe&quot;</span></span><br><span class="line">  CreateShortcut <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name\Program_Name.lnk&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\Program_Name.exe&quot;</span></span><br><span class="line"></span><br><span class="line">SectionEnd</span><br><span class="line"></span><br><span class="line"><span class="comment">; Optional section (can be disabled by the user)</span></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Desktop Shortcut&quot; SectionX</span></span><br><span class="line">    <span class="keyword">SetShellVarContext</span> <span class="literal">current</span></span><br><span class="line">    <span class="keyword">CreateShortCut</span> <span class="string">&quot;<span class="variable">$DESKTOP</span>\Program_Name.lnk&quot;</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>\Program_Name.exe&quot;</span></span><br><span class="line">SectionEnd</span><br><span class="line"></span><br><span class="line"><span class="comment">;--------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Uninstaller</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Section</span> &quot;Uninstall&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">; Remove registry keys</span></span><br><span class="line">  <span class="keyword">DeleteRegKey</span> <span class="params">HKLM</span> <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Program_Name&quot;</span></span><br><span class="line">  <span class="keyword">DeleteRegKey</span> <span class="params">HKLM</span> SOFTWARE\Program_Name</span><br><span class="line"></span><br><span class="line">  <span class="comment">; Remove all files in INSTDIR</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="variable">$INSTDIR</span>\*.*</span><br><span class="line"></span><br><span class="line">  <span class="comment">; Remove all shortcuts, if any</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name\*.lnk&quot;</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable">$DESKTOP</span>\*.lnk&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">; Remove directories</span></span><br><span class="line">  <span class="keyword">RMDir</span> <span class="string">&quot;<span class="variable">$SMPROGRAMS</span>\Program_Name&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> <span class="string">&quot;<span class="variable">$INSTDIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line">SectionEnd</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>将 <code>Program_Name.nsi</code>放到与Program_name项目包的同一级，如下图所示。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026095511802.png" alt="image-20221026095511802" style="zoom:80%;" /><p>右击 <code>Program_Name.nsi</code>，点击Compile。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026100645595.png" alt="image-20221026100645595" style="zoom:67%;" /><p>然后点击Test Installer，可以测试一下，也可以选择Close。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026100839406.png" alt="image-20221026100839406" style="zoom:67%;" /><p>你会发现在当前文件夹下生成了一个 <code>Install_Program_Name.exe</code>，这个就是程序的安装文件。下面双击它进行安装。先勾选一些功能，然后选择安装路径，点击安装。</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026101025597.png" alt="image-20221026101025597" style="zoom:80%;" /><p>安装好了以后会在 <code>Install_Dir</code>文件夹下释放下面的文件：</p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026101319360.png" alt="image-20221026101319360" style="zoom:80%;" /><p>并且在桌面和开始菜单会生成快捷方式。</p><p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026102328741.png" alt="image-20221026102328741" style="zoom:80%;" /><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20221026102341839.png" alt="image-20221026102341839"></p><p>若要卸载的话，双击那个 <code>uninstall.exe</code>即可。</p><p>我把这个demo上传到<a href="https://github.com/Mengfei-Zhao/nsis_demo">github</a>了，需要的同学自取吧，记得给个星哦。</p>]]></content>
     
@@ -37,17 +37,17 @@
     
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/categories/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/categories/Python/"/>
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/tags/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>AD软件 PCB处理最后GND以及铺铜经验</title>
-    <link href="https://www.zhaomengfei.xyz/2022/08/12/Blog/PCB/AD_PCB%E5%A4%84%E7%90%86%E6%9C%80%E5%90%8EGND%E4%BB%A5%E5%8F%8A%E9%93%BA%E9%93%9C%E7%BB%8F%E9%AA%8C/"/>
-    <id>https://www.zhaomengfei.xyz/2022/08/12/Blog/PCB/AD_PCB%E5%A4%84%E7%90%86%E6%9C%80%E5%90%8EGND%E4%BB%A5%E5%8F%8A%E9%93%BA%E9%93%9C%E7%BB%8F%E9%AA%8C/</id>
+    <link href="https://mengfei-zhao.github.io/2022/08/12/Blog/PCB/AD_PCB%E5%A4%84%E7%90%86%E6%9C%80%E5%90%8EGND%E4%BB%A5%E5%8F%8A%E9%93%BA%E9%93%9C%E7%BB%8F%E9%AA%8C/"/>
+    <id>https://mengfei-zhao.github.io/2022/08/12/Blog/PCB/AD_PCB%E5%A4%84%E7%90%86%E6%9C%80%E5%90%8EGND%E4%BB%A5%E5%8F%8A%E9%93%BA%E9%93%9C%E7%BB%8F%E9%AA%8C/</id>
     <published>2022-08-11T16:00:00.000Z</published>
     <updated>2022-08-12T10:01:12.443Z</updated>
     
@@ -62,19 +62,19 @@
     
     
     
-    <category term="PCB" scheme="https://www.zhaomengfei.xyz/categories/PCB/"/>
+    <category term="PCB" scheme="https://mengfei-zhao.github.io/categories/PCB/"/>
     
     
-    <category term="PCB" scheme="https://www.zhaomengfei.xyz/tags/PCB/"/>
+    <category term="PCB" scheme="https://mengfei-zhao.github.io/tags/PCB/"/>
     
-    <category term="AD软件" scheme="https://www.zhaomengfei.xyz/tags/AD%E8%BD%AF%E4%BB%B6/"/>
+    <category term="AD软件" scheme="https://mengfei-zhao.github.io/tags/AD%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>Pycharm在远程Debug时，X11显示图像，matplotlib会报Matplotlib is currently using agg的错</title>
-    <link href="https://www.zhaomengfei.xyz/2022/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/"/>
-    <id>https://www.zhaomengfei.xyz/2022/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/</id>
+    <link href="https://mengfei-zhao.github.io/2022/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/"/>
+    <id>https://mengfei-zhao.github.io/2022/06/10/Blog/Python/Pycharm_%E8%BF%9C%E7%A8%8BDebug_X11_matplotlib/</id>
     <published>2022-06-09T16:00:00.000Z</published>
     <updated>2022-06-10T09:22:15.208Z</updated>
     
@@ -93,21 +93,21 @@
     
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/categories/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/categories/Python/"/>
     
-    <category term="Pycharm" scheme="https://www.zhaomengfei.xyz/categories/Python/Pycharm/"/>
+    <category term="Pycharm" scheme="https://mengfei-zhao.github.io/categories/Python/Pycharm/"/>
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/tags/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/tags/Python/"/>
     
-    <category term="Pycharm" scheme="https://www.zhaomengfei.xyz/tags/Pycharm/"/>
+    <category term="Pycharm" scheme="https://mengfei-zhao.github.io/tags/Pycharm/"/>
     
   </entry>
   
   <entry>
     <title>Vmware安装ubuntu20的过程全纪录</title>
-    <link href="https://www.zhaomengfei.xyz/2022/05/07/Blog/Linux/Vmware_ubuntu20_full_recodes/"/>
-    <id>https://www.zhaomengfei.xyz/2022/05/07/Blog/Linux/Vmware_ubuntu20_full_recodes/</id>
+    <link href="https://mengfei-zhao.github.io/2022/05/07/Blog/Linux/Vmware_ubuntu20_full_recodes/"/>
+    <id>https://mengfei-zhao.github.io/2022/05/07/Blog/Linux/Vmware_ubuntu20_full_recodes/</id>
     <published>2022-05-06T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -125,17 +125,17 @@
     
     
     
-    <category term="Linux" scheme="https://www.zhaomengfei.xyz/categories/Linux/"/>
+    <category term="Linux" scheme="https://mengfei-zhao.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="https://www.zhaomengfei.xyz/tags/Linux/"/>
+    <category term="Linux" scheme="https://mengfei-zhao.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>如何安装Xic和Wrspice软件</title>
-    <link href="https://www.zhaomengfei.xyz/2022/05/07/Blog/Software/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Xic%E5%92%8CWrspice%E8%BD%AF%E4%BB%B6/"/>
-    <id>https://www.zhaomengfei.xyz/2022/05/07/Blog/Software/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Xic%E5%92%8CWrspice%E8%BD%AF%E4%BB%B6/</id>
+    <link href="https://mengfei-zhao.github.io/2022/05/07/Blog/Software/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Xic%E5%92%8CWrspice%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://mengfei-zhao.github.io/2022/05/07/Blog/Software/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Xic%E5%92%8CWrspice%E8%BD%AF%E4%BB%B6/</id>
     <published>2022-05-06T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -152,17 +152,17 @@
     
     
     
-    <category term="softwares" scheme="https://www.zhaomengfei.xyz/categories/softwares/"/>
+    <category term="softwares" scheme="https://mengfei-zhao.github.io/categories/softwares/"/>
     
     
-    <category term="softwares" scheme="https://www.zhaomengfei.xyz/tags/softwares/"/>
+    <category term="softwares" scheme="https://mengfei-zhao.github.io/tags/softwares/"/>
     
   </entry>
   
   <entry>
     <title>win10如何安装JoSIM软件</title>
-    <link href="https://www.zhaomengfei.xyz/2022/04/12/Blog/Software/win10%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85JoSIM%E8%BD%AF%E4%BB%B6/"/>
-    <id>https://www.zhaomengfei.xyz/2022/04/12/Blog/Software/win10%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85JoSIM%E8%BD%AF%E4%BB%B6/</id>
+    <link href="https://mengfei-zhao.github.io/2022/04/12/Blog/Software/win10%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85JoSIM%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://mengfei-zhao.github.io/2022/04/12/Blog/Software/win10%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85JoSIM%E8%BD%AF%E4%BB%B6/</id>
     <published>2022-04-11T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -180,17 +180,17 @@
     
     
     
-    <category term="softwares" scheme="https://www.zhaomengfei.xyz/categories/softwares/"/>
+    <category term="softwares" scheme="https://mengfei-zhao.github.io/categories/softwares/"/>
     
     
-    <category term="softwares" scheme="https://www.zhaomengfei.xyz/tags/softwares/"/>
+    <category term="softwares" scheme="https://mengfei-zhao.github.io/tags/softwares/"/>
     
   </entry>
   
   <entry>
     <title>PSCAN2在win10上的安装教程</title>
-    <link href="https://www.zhaomengfei.xyz/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
-    <id>https://www.zhaomengfei.xyz/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</id>
+    <link href="https://mengfei-zhao.github.io/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
+    <id>https://mengfei-zhao.github.io/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</id>
     <published>2022-04-08T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -209,17 +209,17 @@
     
     
     
-    <category term="softwares" scheme="https://www.zhaomengfei.xyz/categories/softwares/"/>
+    <category term="softwares" scheme="https://mengfei-zhao.github.io/categories/softwares/"/>
     
     
-    <category term="softwares" scheme="https://www.zhaomengfei.xyz/tags/softwares/"/>
+    <category term="softwares" scheme="https://mengfei-zhao.github.io/tags/softwares/"/>
     
   </entry>
   
   <entry>
     <title>Python_使用GUI和多线程时报错</title>
-    <link href="https://www.zhaomengfei.xyz/2021/11/29/Blog/Python/Python_%E4%BD%BF%E7%94%A8GUI%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%97%B6%E6%8A%A5%E9%94%99/"/>
-    <id>https://www.zhaomengfei.xyz/2021/11/29/Blog/Python/Python_%E4%BD%BF%E7%94%A8GUI%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%97%B6%E6%8A%A5%E9%94%99/</id>
+    <link href="https://mengfei-zhao.github.io/2021/11/29/Blog/Python/Python_%E4%BD%BF%E7%94%A8GUI%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%97%B6%E6%8A%A5%E9%94%99/"/>
+    <id>https://mengfei-zhao.github.io/2021/11/29/Blog/Python/Python_%E4%BD%BF%E7%94%A8GUI%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%97%B6%E6%8A%A5%E9%94%99/</id>
     <published>2021-11-28T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -235,17 +235,17 @@
     
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/categories/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/categories/Python/"/>
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/tags/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python_多继承时_父类之间竟然可以相互调用method</title>
-    <link href="https://www.zhaomengfei.xyz/2021/11/09/Blog/Python/Python_%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%97%B6_%E7%88%B6%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%AB%9F%E7%84%B6%E5%8F%AF%E4%BB%A5%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8method/"/>
-    <id>https://www.zhaomengfei.xyz/2021/11/09/Blog/Python/Python_%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%97%B6_%E7%88%B6%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%AB%9F%E7%84%B6%E5%8F%AF%E4%BB%A5%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8method/</id>
+    <link href="https://mengfei-zhao.github.io/2021/11/09/Blog/Python/Python_%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%97%B6_%E7%88%B6%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%AB%9F%E7%84%B6%E5%8F%AF%E4%BB%A5%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8method/"/>
+    <id>https://mengfei-zhao.github.io/2021/11/09/Blog/Python/Python_%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%97%B6_%E7%88%B6%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%AB%9F%E7%84%B6%E5%8F%AF%E4%BB%A5%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8method/</id>
     <published>2021-11-08T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -259,17 +259,17 @@
     
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/categories/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/categories/Python/"/>
     
     
-    <category term="Python" scheme="https://www.zhaomengfei.xyz/tags/Python/"/>
+    <category term="Python" scheme="https://mengfei-zhao.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>AD软件_PCB板的四个角放置通孔和圆弧keepout线的快捷方法</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/15/Blog/PCB/AD_PCB%E6%9D%BF%E7%9A%84%E5%9B%9B%E4%B8%AA%E8%A7%92%E6%94%BE%E7%BD%AE%E9%80%9A%E5%AD%94%E5%92%8C%E5%9C%86%E5%BC%A7keepout%E7%BA%BF%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E6%B3%95/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/15/Blog/PCB/AD_PCB%E6%9D%BF%E7%9A%84%E5%9B%9B%E4%B8%AA%E8%A7%92%E6%94%BE%E7%BD%AE%E9%80%9A%E5%AD%94%E5%92%8C%E5%9C%86%E5%BC%A7keepout%E7%BA%BF%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E6%B3%95/</id>
+    <link href="https://mengfei-zhao.github.io/2021/10/15/Blog/PCB/AD_PCB%E6%9D%BF%E7%9A%84%E5%9B%9B%E4%B8%AA%E8%A7%92%E6%94%BE%E7%BD%AE%E9%80%9A%E5%AD%94%E5%92%8C%E5%9C%86%E5%BC%A7keepout%E7%BA%BF%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E6%B3%95/"/>
+    <id>https://mengfei-zhao.github.io/2021/10/15/Blog/PCB/AD_PCB%E6%9D%BF%E7%9A%84%E5%9B%9B%E4%B8%AA%E8%A7%92%E6%94%BE%E7%BD%AE%E9%80%9A%E5%AD%94%E5%92%8C%E5%9C%86%E5%BC%A7keepout%E7%BA%BF%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E6%B3%95/</id>
     <published>2021-10-14T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -287,19 +287,19 @@
     
     
     
-    <category term="PCB" scheme="https://www.zhaomengfei.xyz/categories/PCB/"/>
+    <category term="PCB" scheme="https://mengfei-zhao.github.io/categories/PCB/"/>
     
     
-    <category term="PCB" scheme="https://www.zhaomengfei.xyz/tags/PCB/"/>
+    <category term="PCB" scheme="https://mengfei-zhao.github.io/tags/PCB/"/>
     
-    <category term="AD软件" scheme="https://www.zhaomengfei.xyz/tags/AD%E8%BD%AF%E4%BB%B6/"/>
+    <category term="AD软件" scheme="https://mengfei-zhao.github.io/tags/AD%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>AD软件方便的铺铜，并放置via阵列</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/</id>
+    <link href="https://mengfei-zhao.github.io/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/"/>
+    <id>https://mengfei-zhao.github.io/2021/10/12/Blog/PCB/AD%E6%96%B9%E4%BE%BF%E7%9A%84%E9%93%BA%E9%93%9C%E6%96%B9%E6%B3%95_%E5%B9%B6%E6%94%BE%E7%BD%AEvia%E9%98%B5%E5%88%97/</id>
     <published>2021-10-11T16:00:00.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -317,19 +317,19 @@
     
     
     
-    <category term="PCB" scheme="https://www.zhaomengfei.xyz/categories/PCB/"/>
+    <category term="PCB" scheme="https://mengfei-zhao.github.io/categories/PCB/"/>
     
     
-    <category term="PCB" scheme="https://www.zhaomengfei.xyz/tags/PCB/"/>
+    <category term="PCB" scheme="https://mengfei-zhao.github.io/tags/PCB/"/>
     
-    <category term="AD软件" scheme="https://www.zhaomengfei.xyz/tags/AD%E8%BD%AF%E4%BB%B6/"/>
+    <category term="AD软件" scheme="https://mengfei-zhao.github.io/tags/AD%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/</id>
+    <link href="https://mengfei-zhao.github.io/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/"/>
+    <id>https://mengfei-zhao.github.io/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/</id>
     <published>2021-10-10T05:26:01.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -350,17 +350,17 @@
     
     
     
-    <category term="ZYNQ" scheme="https://www.zhaomengfei.xyz/categories/ZYNQ/"/>
+    <category term="ZYNQ" scheme="https://mengfei-zhao.github.io/categories/ZYNQ/"/>
     
     
-    <category term="ZYNQ" scheme="https://www.zhaomengfei.xyz/tags/ZYNQ/"/>
+    <category term="ZYNQ" scheme="https://mengfei-zhao.github.io/tags/ZYNQ/"/>
     
   </entry>
   
   <entry>
     <title>Arduino舒适的开发环境搭建：vscode+arduino插件</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/</id>
+    <link href="https://mengfei-zhao.github.io/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/"/>
+    <id>https://mengfei-zhao.github.io/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/</id>
     <published>2021-10-10T04:26:01.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -382,21 +382,21 @@
     
     
     
-    <category term="vscode" scheme="https://www.zhaomengfei.xyz/categories/vscode/"/>
+    <category term="vscode" scheme="https://mengfei-zhao.github.io/categories/vscode/"/>
     
-    <category term="Arduino" scheme="https://www.zhaomengfei.xyz/categories/vscode/Arduino/"/>
+    <category term="Arduino" scheme="https://mengfei-zhao.github.io/categories/vscode/Arduino/"/>
     
     
-    <category term="Arduino" scheme="https://www.zhaomengfei.xyz/tags/Arduino/"/>
+    <category term="Arduino" scheme="https://mengfei-zhao.github.io/tags/Arduino/"/>
     
-    <category term="vscode" scheme="https://www.zhaomengfei.xyz/tags/vscode/"/>
+    <category term="vscode" scheme="https://mengfei-zhao.github.io/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>如何将阿里云的域名绑定到Github Page</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/</id>
+    <link href="https://mengfei-zhao.github.io/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/"/>
+    <id>https://mengfei-zhao.github.io/2021/10/10/Blog/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/%E5%A6%82%E4%BD%95%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A%E5%88%B0Github_Page/</id>
     <published>2021-10-10T04:26:01.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -412,21 +412,21 @@
     
     
     
-    <category term="个人网站" scheme="https://www.zhaomengfei.xyz/categories/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
+    <category term="个人网站" scheme="https://mengfei-zhao.github.io/categories/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
     
     
-    <category term="Hexo" scheme="https://www.zhaomengfei.xyz/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://mengfei-zhao.github.io/tags/Hexo/"/>
     
-    <category term="Github Page" scheme="https://www.zhaomengfei.xyz/tags/Github-Page/"/>
+    <category term="Github Page" scheme="https://mengfei-zhao.github.io/tags/Github-Page/"/>
     
-    <category term="个人网站" scheme="https://www.zhaomengfei.xyz/tags/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
+    <category term="个人网站" scheme="https://mengfei-zhao.github.io/tags/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
     
   </entry>
   
   <entry>
     <title>Arduino舒适的开发环境搭建：vscode+PlatformIO</title>
-    <link href="https://www.zhaomengfei.xyz/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/"/>
-    <id>https://www.zhaomengfei.xyz/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/</id>
+    <link href="https://mengfei-zhao.github.io/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/"/>
+    <id>https://mengfei-zhao.github.io/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/</id>
     <published>2021-10-09T15:26:01.000Z</published>
     <updated>2022-05-07T08:07:35.000Z</updated>
     
@@ -443,16 +443,16 @@
     
     
     
-    <category term="vscode" scheme="https://www.zhaomengfei.xyz/categories/vscode/"/>
+    <category term="vscode" scheme="https://mengfei-zhao.github.io/categories/vscode/"/>
     
-    <category term="Arduino" scheme="https://www.zhaomengfei.xyz/categories/vscode/Arduino/"/>
+    <category term="Arduino" scheme="https://mengfei-zhao.github.io/categories/vscode/Arduino/"/>
     
     
-    <category term="Arduino" scheme="https://www.zhaomengfei.xyz/tags/Arduino/"/>
+    <category term="Arduino" scheme="https://mengfei-zhao.github.io/tags/Arduino/"/>
     
-    <category term="vscode" scheme="https://www.zhaomengfei.xyz/tags/vscode/"/>
+    <category term="vscode" scheme="https://mengfei-zhao.github.io/tags/vscode/"/>
     
-    <category term="PlatformIO" scheme="https://www.zhaomengfei.xyz/tags/PlatformIO/"/>
+    <category term="PlatformIO" scheme="https://mengfei-zhao.github.io/tags/PlatformIO/"/>
     
   </entry>
   

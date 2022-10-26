@@ -19,11 +19,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.zhaomengfei.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mengfei-zhao.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="1、环境介绍：  ZYNQ-7000 MZ7XA板卡 vivado 2020.1 vitis 2020.1  2、正文： 首先介绍一下镜像这个概念，下面是百度百科中的解释：  所谓镜像文件其实和rar ZIP压缩包类似，它将特定的一系列文件按照一定的格式制作成单一的文件，以方便用户下载和使用，例如一个操作系统、游戏等。它最重要的特点是可以被特定的软件识别并可直接刻录到光盘上。其实通常意义上的镜像文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中">
-<meta property="og:url" content="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/index.html">
+<meta property="og:url" content="https://mengfei-zhao.github.io/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/index.html">
 <meta property="og:site_name" content="Mengfei&#39;s Personal Website">
 <meta property="og:description" content="1、环境介绍：  ZYNQ-7000 MZ7XA板卡 vivado 2020.1 vitis 2020.1  2、正文： 首先介绍一下镜像这个概念，下面是百度百科中的解释：  所谓镜像文件其实和rar ZIP压缩包类似，它将特定的一系列文件按照一定的格式制作成单一的文件，以方便用户下载和使用，例如一个操作系统、游戏等。它最重要的特点是可以被特定的软件识别并可直接刻录到光盘上。其实通常意义上的镜像文">
 <meta property="og:locale" content="en_US">
@@ -51,11 +51,11 @@
 <meta name="twitter:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211002162341338.png">
 
 
-<link rel="canonical" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
+<link rel="canonical" href="https://mengfei-zhao.github.io/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/","path":"2021/10/10/Blog/ZYNQ/ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中/","title":"ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mengfei-zhao.github.io/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/","path":"2021/10/10/Blog/ZYNQ/ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中/","title":"ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>ZYNQ开发学习笔记（一）：BOOT.bin，fsbl文件，将程序固化到板上的QSPI_Flash中 | Mengfei's Personal Website</title>
@@ -246,7 +246,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://www.zhaomengfei.xyz/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
+    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/10/Blog/ZYNQ/ZYNQ%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOOT.bin%EF%BC%8Cfsbl%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E7%A8%8B%E5%BA%8F%E5%9B%BA%E5%8C%96%E5%88%B0%E6%9D%BF%E4%B8%8A%E7%9A%84QSPI_Flash%E4%B8%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head_portrait.jpg">
