@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/mf_apple_touch_icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/mf_favicon_32_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/mf_favicon_16_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mengfei-zhao.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+<meta name="description" content="一、前言 目的：在win10上安装PSCAN2 Superconductor Circuit Simulator软件。 开发环境：  win10 vscode + python插件 + vhdl插件  二、开始 查看官网要求：官网链接  可以看到是安装32 bit的anaconda，所以打开Anaconda网站，往下翻，找到32 bit的windows安装包。可以看到写下这篇博客时，Anacond">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PSCAN2在win10上的安装教程">
+<meta property="og:url" content="https://mengfei-zhao.github.io/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Mengfei&#39;s Personal Website">
+<meta property="og:description" content="一、前言 目的：在win10上安装PSCAN2 Superconductor Circuit Simulator软件。 开发环境：  win10 vscode + python插件 + vhdl插件  二、开始 查看官网要求：官网链接  可以看到是安装32 bit的anaconda，所以打开Anaconda网站，往下翻，找到32 bit的windows安装包。可以看到写下这篇博客时，Anacond">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409173851493.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409174028048.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409175516063.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180000361.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180406876.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180518536.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180743357.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif">
+<meta property="article:published_time" content="2022-04-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-07T08:07:35.000Z">
+<meta property="article:author" content="Mengfei">
+<meta property="article:tag" content="softwares">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409173851493.png">
+
+
+<link rel="canonical" href="https://mengfei-zhao.github.io/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mengfei-zhao.github.io/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/","path":"2022/04/09/Blog/Software/PSCAN2在win10上的安装教程/","title":"PSCAN2在win10上的安装教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PSCAN2在win10上的安装教程 | Mengfei's Personal Website</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Mengfei's Personal Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Mengfei's Personal Website</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs & Notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">二、开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E4%BA%86%E4%B8%80%E4%B8%AAbug"><span class="nav-number">2.1.</span> <span class="nav-text">遇到了一个bug:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mengfei"
+      src="/images/head_portrait.jpg">
+  <p class="site-author-name" itemprop="name">Mengfei</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Mengfei-Zhao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Mengfei-Zhao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_43128203?spm=1001.2101.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43128203?spm&#x3D;1001.2101.3001.5343" rel="noopener" target="_blank"><i class="fa fa-blog fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaomf@mail.sim.ac.cn" title="E-Mail → mailto:zhaomf@mail.sim.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2022/04/09/Blog/Software/PSCAN2%E5%9C%A8win10%E4%B8%8A%E7%9A%84%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PSCAN2在win10上的安装教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-09T00:00:00+08:00">2022-04-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-05-07 16:07:35" itemprop="dateModified" datetime="2022-05-07T16:07:35+08:00">2022-05-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/softwares/" itemprop="url" rel="index"><span itemprop="name">softwares</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、前言">一、前言</h2>
+<p>目的：在win10上安装PSCAN2 Superconductor Circuit Simulator软件。</p>
+<p><strong>开发环境：</strong></p>
+<ul>
+<li>win10</li>
+<li>vscode + python插件 + vhdl插件</li>
+</ul>
+<h2 id="二、开始">二、开始</h2>
+<p>查看官网要求：<a target="_blank" rel="noopener" href="http://www.pscan2sim.org/install.html">官网链接</a></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409173851493.png" alt="image-20220409173851493" style="zoom:80%;" />
+<p>可以看到是安装32 bit的anaconda，所以打开<a target="_blank" rel="noopener" href="https://www.anaconda.com/products/distribution">Anaconda网站</a>，往下翻，找到32 bit的windows安装包。可以看到写下这篇博客时，Anaconda已经更新到了Python 3.9，而PSCAN2要求的python环境是3.8的，这个版本差异我是通过后续在Anaconda软件内新建3.8版本的python环境来解决的，所以这里就直接下载这个Python3.9 32bit 的安装包即可。下载好了后，安装，参考这个<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=kQMPPLRpuI0&amp;ab_channel=Koolac">Anaconda安装教程</a>。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409174028048.png" alt="image-20220409174028048" style="zoom:60%;" />
+<p>anaconda安装好了后，要是没有将它加入到环境变量，需要加入到环境变量，否则无法在terminal中执行conda命令，参考<a target="_blank" rel="noopener" href="https://www.py.cn/tools/anaconda/19876.html#:~:text=%E6%B7%BB%E5%8A%A0anaconda%E5%88%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A%E9%A6%96%E5%85%88%E8%BF%9B%E5%85%A5anaconda,%E6%B7%BB%E5%8A%A0Scripts%E8%B7%AF%E5%BE%84%E5%8D%B3%E5%8F%AF%E3%80%82&amp;text=%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84%EF%BC%9B-,%E6%8E%A5%E7%9D%80%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7%E8%AE%BE%E7%BD%AE%EF%BC%8C%E8%BF%9B%E5%85%A5%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE%EF%BC%9B,%E6%B7%BB%E5%8A%A0Scripts%E8%B7%AF%E5%BE%84%E5%8D%B3%E5%8F%AF%E3%80%82">这个</a>。</p>
+<p>接下来新建一个python 3.8的环境（按照pscan2 的官网要求），参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/H_O_W_E/article/details/77370456">这个</a>，在这篇教程中的py36可以自定义的，当然我们这里需要新建成3.8，而不是3.6的。</p>
+<p>接下来将<a target="_blank" rel="noopener" href="http://www.pscan2sim.org/downloads.html">pscan2网站</a>的所有东西下载下来，即下面这些东西，留着用来学习吧。假设我们下载到了一个名叫 <code>pscan2</code>文件夹，并将这所有的压缩包类的都解压到该目录下。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409175516063.png" alt="image-20220409175516063" style="zoom:67%;" />
+<p>在 <code>pscan2</code>文件夹中，开一个终端，在终端中切换到我们的python3.8环境，然后执行 <code>conda install pscan2-xxx.bz2</code>命令，目的是将pscan2软件部署到该Python环境中，接下来就可以启动pscan2软件了。</p>
+<p>在上面的终端中，cd到testnot文件夹（这里面是一个demo工程，详情见pscan的两个pdf手册），然后键入下面图片中的命令 <code>python -m pscan2.gui testnot</code>，幸运的话，你就能正常启动软件了，并看到GUI软件出现。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180000361.png" alt="image-20220409180000361" style="zoom:67%;" />
+<h3 id="遇到了一个bug">遇到了一个bug:</h3>
+<p>我在执行上述命令后，遇到了下面这样的错误：（参考的是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/28165639/unicodedecodeerror-gbk-codec-cant-decode-byte-0x80-in-position-0-illegal-mult">这个</a>）</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180406876.png" alt="image-20220409180406876" style="zoom:67%;" />
+<p>解决办法，打开这个LodaCircuit.py文件，在报错的这一行（如下图所示）进行修改，加入这个 <code>, encoding='UTF-8' </code>，然后保存。再执行一次该命令 <code>python -m pscan2.gui testnot</code>，这次应该就可以正常启动pscan的GUI了。GUI如下所示。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180518536.png" alt="image-20220409180518536" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20220409180743357.png" alt="image-20220409180743357" style="zoom:67%;" />
+<p><strong>最后：</strong></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom: 50%;" />
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/softwares/" rel="tag"># softwares</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/29/Blog/Python/Python_%E4%BD%BF%E7%94%A8GUI%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%97%B6%E6%8A%A5%E9%94%99/" rel="prev" title="Python_使用GUI和多线程时报错">
+                  <i class="fa fa-chevron-left"></i> Python_使用GUI和多线程时报错
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/12/Blog/Software/win10%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85JoSIM%E8%BD%AF%E4%BB%B6/" rel="next" title="win10如何安装JoSIM软件">
+                  win10如何安装JoSIM软件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mengfei</span>
+</div>
+  <span id="busuanzi_container_site_pv">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    访问量：<span id="busuanzi_value_site_pv"></span> 次数
+  </span>
+
+  <span id="busuanzi_container_site_uv">
+    <span class="post-meta-divider">
+      <i class="fa fa-user"></i>
+    </span>
+    访客数：<span id="busuanzi_value_site_uv"></span> 人次
+  </span>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Mengfei-Zhao","repo":"BlogComment","client_id":"e9e0a0a67b70fb155982","client_secret":"62a613939d04c40c12242eec6657e2b11c4ba320","admin_user":"Mengfei-Zhao","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"e70f0c7ad01f1315d06b62c9682b3c6b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+
+  <!-- 鼠标点击特效 -->
+  
+    
+      <script src="/js/cursor/love.min.js"></script>
+    
+  
+
+
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/mf_apple_touch_icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/mf_favicon_32_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/mf_favicon_16_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mengfei-zhao.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+<meta name="description" content="一、前言 Arduino自带的IDE用在小的工程时还可以应付，但是面对大型工程时，就比较鸡肋了。本着想愉快的编写Arduinio的代码，让我们开始“折腾”吧~ 开发环境：  win10 vscode + PlatformIO插件 Arduino 官方的IDE  1.8.16 手头有一个Arduino UNO板卡  二、开始 首先下载、安装vscode。然后安装platformio插件，如下图：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino舒适的开发环境搭建：vscode+PlatformIO">
+<meta property="og:url" content="https://mengfei-zhao.github.io/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/index.html">
+<meta property="og:site_name" content="Mengfei&#39;s Personal Website">
+<meta property="og:description" content="一、前言 Arduino自带的IDE用在小的工程时还可以应付，但是面对大型工程时，就比较鸡肋了。本着想愉快的编写Arduinio的代码，让我们开始“折腾”吧~ 开发环境：  win10 vscode + PlatformIO插件 Arduino 官方的IDE  1.8.16 手头有一个Arduino UNO板卡  二、开始 首先下载、安装vscode。然后安装platformio插件，如下图：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007173651871.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174311073.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174451940.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174714097.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174912757.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007175216973.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007175724408.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007180030141.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007180741703.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007181612585.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007181950115.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007182127853.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007182330671.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007183715444.png">
+<meta property="og:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif">
+<meta property="article:published_time" content="2021-10-09T15:26:01.000Z">
+<meta property="article:modified_time" content="2022-05-07T08:07:35.000Z">
+<meta property="article:author" content="Mengfei">
+<meta property="article:tag" content="Arduino">
+<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="PlatformIO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007173651871.png">
+
+
+<link rel="canonical" href="https://mengfei-zhao.github.io/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mengfei-zhao.github.io/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/","path":"2021/10/09/Blog/Arduino/Arduino舒适的开发环境搭建_vscode_platformio/","title":"Arduino舒适的开发环境搭建：vscode+PlatformIO"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Arduino舒适的开发环境搭建：vscode+PlatformIO | Mengfei's Personal Website</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Mengfei's Personal Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Mengfei's Personal Website</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs & Notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">二、开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8IDE%E6%96%B9%E5%BC%8F%E6%96%B0%E5%BB%BAhelloworld%E5%B7%A5%E7%A8%8B%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">使用IDE方式新建helloworld工程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8B%A5%E9%80%9A%E8%BF%87IDE%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%BE%88%E6%85%A2%E7%9A%84%E8%AF%9D%EF%BC%8C%E8%AF%B7%E6%8E%A5%E7%9D%80%E5%BE%80%E4%B8%8B%E7%9C%8B"><span class="nav-number">2.2.</span> <span class="nav-text">若通过IDE方式来创建工程，很慢的话，请接着往下看</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mengfei"
+      src="/images/head_portrait.jpg">
+  <p class="site-author-name" itemprop="name">Mengfei</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Mengfei-Zhao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Mengfei-Zhao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_43128203?spm=1001.2101.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43128203?spm&#x3D;1001.2101.3001.5343" rel="noopener" target="_blank"><i class="fa fa-blog fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaomf@mail.sim.ac.cn" title="E-Mail → mailto:zhaomf@mail.sim.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://mengfei-zhao.github.io/2021/10/09/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_platformio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head_portrait.jpg">
+      <meta itemprop="name" content="Mengfei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mengfei's Personal Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Arduino舒适的开发环境搭建：vscode+PlatformIO
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-10-09 23:26:01" itemprop="dateCreated datePublished" datetime="2021-10-09T23:26:01+08:00">2021-10-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-05-07 16:07:35" itemprop="dateModified" datetime="2022-05-07T16:07:35+08:00">2022-05-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vscode/Arduino/" itemprop="url" rel="index"><span itemprop="name">Arduino</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、前言">一、前言</h2>
+<p>Arduino自带的IDE用在小的工程时还可以应付，但是面对大型工程时，就比较鸡肋了。本着想愉快的编写Arduinio的代码，让我们开始“折腾”吧~</p>
+<p><strong>开发环境：</strong></p>
+<ul>
+<li>win10</li>
+<li>vscode + PlatformIO插件</li>
+<li>Arduino 官方的IDE  1.8.16</li>
+<li>手头有一个Arduino UNO板卡</li>
+</ul>
+<h2 id="二、开始">二、开始</h2>
+<p>首先下载、安装vscode。然后安装platformio插件，如下图：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007173651871.png" alt="image-20211007173650230" style="zoom:70%;" />
+<p>这个插件在使用IDE新建工程时，有些bug，就是特别慢，网上说是需要从github上下载一些东西，所以就很慢，而国内在使用github时有时候就是挺慢的。不过还是想用这么香的东西，肿么办呢？且听我慢慢道来。</p>
+<h3 id="使用IDE方式新建helloworld工程：">使用IDE方式新建helloworld工程：</h3>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174311073.png" alt="image-20211007174311073" style="zoom:80%;" />
+<p>首先点击如图所示的，更新一下pio core，下面是官方的介绍（<a href="!%5Bimage-20211007174534039%5D(C:/Users/meng/AppData/Roaming/Typora/typora-user-images/image-20211007174534039.png)!%5Bimage-20211007174534039%5D(C:/Users/meng/AppData/Roaming/Typora/typora-user-images/image-20211007174534039.png)">官方文档链接</a>），小伙伴记得仔细看官方文档呦。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174451940.png" alt="image-20211007174451940"></p>
+<p>然后点击下面的New Project。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174714097.png" alt="image-20211007174714097"></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007174912757.png" alt="image-20211007174912757" style="zoom:80%;" />
+<p>这里在选择工程路径时，有时加载会有些慢。然后点击底部的Finish，之后会加载一段时间，这个时间真是很奇怪，快时只需要几秒钟，慢时一个小时也搞不定。慢时我后面会讲如何应对。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007175216973.png" alt="image-20211007175216973"></p>
+<p>之后窗口中会出现两个相同的文件夹，需要右击任意删除一个（点击Remove folder from workspace）。之后save as一个workspace。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007175724408.png" alt="image-20211007175724408"></p>
+<p>处理之后一定要确保左侧的工作空间窗口中像上图这样，即一个workspace下面只有一个helloworld4的工作目录。如果是像下面这样嵌套的路径结构或者其他的结构，后面在编写源文件时，可能会出现头文件引用找不到的问题，即例如右侧B处的Serial下面有个红色波浪线，提示找不到该玩意儿在哪里。。。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007180030141.png" alt="image-20211007180030141" style="zoom:80%;" />
+<p>而这点是vscode中c/c++插件的一个bug（详情参见此<a target="_blank" rel="noopener" href="https://community.platformio.org/t/include-errors-detected/5858">链接</a>），只要想办法绕过此bug即可。</p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007180741703.png" alt="image-20211007180741703"></p>
+<p>当然若实在是头文件引用错误的话，可以暴力点，关闭所有的错误提示，从此再无红色波浪线（设置看此<a target="_blank" rel="noopener" href="https://blog.csdn.net/HermitSun/article/details/103627053#:~:text=%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA%E4%BA%86%E3%80%82-,%E5%90%AF%E7%94%A8%E6%96%B9%E6%B3%95%E6%98%AFctrl%2Bshift%2Bp%20%E6%90%9C%E7%B4%A2%E5%90%AF%E7%94%A8%E9%94%99%E8%AF%AF%E6%B3%A2%E5%BD%A2,%E6%9B%B2%E7%BA%BF%EF%BC%8C%E6%89%93%E5%BC%80%E5%B0%B1%E8%A1%8C...&amp;text=%E4%BB%A3%E7%A0%81%E5%87%BA%E7%8E%B0%E6%B3%A2%E5%BD%A2%E6%9B%B2%E7%BA%BF%EF%BC%9A%20%E8%A7%A3%E5%86%B3,%E6%94%B9%E4%B8%BAtrue%E5%8D%B3%E5%8F%AF%E3%80%82">链接</a>）。</p>
+<p><strong>编写源代码：</strong></p>
+<p>下面是让LED灯闪烁，并发送数据到串口。</p>
+<p>main.cpp:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> onboard 13</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">  <span class="built_in">pinMode</span>(onboard, OUTPUT);</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// put your main code here, to run repeatedly:</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(onboard, LOW);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(onboard, HIGH);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对了，arduino的代码其实就是C++代码，当然可以分成很多个子.cpp，.h来编写代码，参考<a target="_blank" rel="noopener" href="https://www.eefocus.com/liusk2014/blog/14-05/303449_fe78d.html">链接1</a>， <a target="_blank" rel="noopener" href="https://blog.csdn.net/codalion/article/details/86014560">链接2</a>。</p>
+<p><strong>编译，烧录：</strong></p>
+<p><img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007181612585.png" alt="image-20211007181612585"></p>
+<p>上图中A是编译，B是烧录，C是打开串口工具。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007181950115.png" alt="image-20211007181950115" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007182127853.png" alt="image-20211007182127853" style="zoom:80%;" />
+<p>下面是串口中的数据：</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007182330671.png" alt="image-20211007182330671" style="zoom:80%;" />
+<p><strong>搞定！</strong></p>
+<h3 id="若通过IDE方式来创建工程，很慢的话，请接着往下看">若通过IDE方式来创建工程，很慢的话，请接着往下看</h3>
+<p>首先看下这个<a target="_blank" rel="noopener" href="https://community.platformio.org/t/too-slow-to-create-a-new-project/18259">链接</a>。</p>
+<p>可以通过CLI的方式来创建工程，用vscode打开一个空文件夹，然后在terminal中敲入 <code>pio project init --board uno</code>，然后会在vscode中释放一堆一样的文件夹结构（<em>这个过程会快一些吧</em>），然后打开这个platformio工程，此时看下platformio.ini文件中是否正确，如下所示。</p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20211007183715444.png" alt="image-20211007183715444" style="zoom:80%;" />
+<p>现在新建并编写自己的源文件即可。</p>
+<p><strong>最后：</strong></p>
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/点赞.gif" alt="点赞" style="zoom: 50%;" />
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Arduino/" rel="tag"># Arduino</a>
+              <a href="/tags/vscode/" rel="tag"># vscode</a>
+              <a href="/tags/PlatformIO/" rel="tag"># PlatformIO</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/10/Blog/Arduino/Arduino%E8%88%92%E9%80%82%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_vscode_arduino%E6%8F%92%E4%BB%B6/" rel="next" title="Arduino舒适的开发环境搭建：vscode+arduino插件">
+                  Arduino舒适的开发环境搭建：vscode+arduino插件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mengfei</span>
+</div>
+  <span id="busuanzi_container_site_pv">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    访问量：<span id="busuanzi_value_site_pv"></span> 次数
+  </span>
+
+  <span id="busuanzi_container_site_uv">
+    <span class="post-meta-divider">
+      <i class="fa fa-user"></i>
+    </span>
+    访客数：<span id="busuanzi_value_site_uv"></span> 人次
+  </span>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Mengfei-Zhao","repo":"BlogComment","client_id":"e9e0a0a67b70fb155982","client_secret":"62a613939d04c40c12242eec6657e2b11c4ba320","admin_user":"Mengfei-Zhao","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"8f1a13bfe1c489680e3fffe12865479a"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+
+  <!-- 鼠标点击特效 -->
+  
+    
+      <script src="/js/cursor/love.min.js"></script>
+    
+  
+
+
+</body>
+</html>
