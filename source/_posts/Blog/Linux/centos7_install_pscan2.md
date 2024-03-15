@@ -11,13 +11,13 @@ tags:
 
 [pscan2的官方教程](http://www.pscan2sim.org/install.html)，按照下面Linux 64 bit的指示，一共分为4步。找一个地方，新建一个文件夹用来存放安装包，这里我们以 `pscan2_setup`文件夹为例。pscan2安装的位置在 `/opt/pscan2`。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325220538901.png" alt="image-20230325220538901" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325220538901.png" alt="image-20230325220538901" style="zoom:80%;" />
 
 ###  第一步：安装Anaconda
 
 [Anaconda官网链接](https://www.anaconda.com/products/distribution)，点进去后，翻到底。点击下面的链接，会下载一个 `Anaconda3-xxx.sh`文件，安装参考这个[教程](https://blog.csdn.net/weixin_43120985/article/details/118163799)。我这里是安装在 `/opt/Anaconda3`下，当然需要root权限。
 
-<img src="centos7_install_pscan2.assets/image-20230325213936087.png" alt="image-20230325213936087" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325213936087.png" alt="image-20230325213936087" style="zoom:67%;" />
 
 安装好了Anaconda3后，然后创建一个python3.8的环境，这个需要和你下载的pscan2的包要求的一致。这里执行：
 
@@ -31,7 +31,7 @@ conda create -p /opt/pscan2/python38 python=3.8
 
 这里下载的是SuiteSparse v7.0.1，[下载链接](https://github.com/DrTimothyAldenDavis/SuiteSparse/releases)。点击下面的链接，会下载一个 `SuiteSparse-xxx.tar.gz`的包。将这个包复制到 `/opt/pscan2`目录下，执行 `tar -xf SuiteSparse-xxx.tar.gz`来解压该包，会得到一个 `SuiteSparse-7.0.1`的文件夹，cd进去。我这里是采用 `make local`的方式，就是只把 `.so`文件释放到该目录下。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325221231573.png" alt="image-20230325221231573" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325221231573.png" alt="image-20230325221231573" style="zoom:67%;" />
 
 下面都是在root下操作。
 
@@ -86,7 +86,7 @@ make install
 
 先 `make local`，报了下面的错，但是我敲 `gcc -v`，发现我的gcc是12.2.0版本的，已经满足要求了，此时需要先指定一下gcc的环境变量。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325222136883.png" alt="image-20230325222136883" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325222136883.png" alt="image-20230325222136883" style="zoom:80%;" />
 
 先敲下面的代码，来指定一下gcc。[参考链接](https://github.com/Project-OSRM/osrm-backend/issues/5117)。
 
@@ -100,13 +100,13 @@ CC=gcc CX=g++
 
 当你指定了上面的gcc后，执行`JOBS=32 make local`，会发现还是会报那个错，如下图所示，这时发现它是卡在了GraphBLAS里。这是因为make的cache文件还没有更新，所以我们需要删除掉这个cache文件，敲 `rm GraphBLAS/build/CmakeCache.txt`，来删除掉它。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325225523636.png" alt="image-20230325225523636" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325225523636.png" alt="image-20230325225523636" style="zoom:80%;" />
 
 再执行`JOBS=32 make local`，会发现通过了上面这个报错。
 
 但是过一会，又遇到了一个新的报错。说我的mpfr版本太低，但是我明明已经安装好了 v4.0.2的mpfr，所以应该时路径没有指定到位。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325224842490.png" alt="image-20230325224842490" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325224842490.png" alt="image-20230325224842490" style="zoom:80%;" />
 
 可以看到这次是卡在了SPEX中，在终端中执行：
 
@@ -126,7 +126,7 @@ rm SPEX/build/CMakeCache.txt
 make install
 ```
 
-![image-20230325231327700](D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325231327700.png)
+![image-20230325231327700](https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325231327700.png)
 
 下面我又安照pscan2官方的指示，又到各个module里make了一下。
 
@@ -159,7 +159,7 @@ export LD_LIBRARY_PATH
 
 下面找一个jtl的电路，来跑一个pscan2。准备好下面几个文件，其中.hdl .cir的文件读者可以参考pscan2的手册编写，而psui.py是一个调用pscan2 GUI的脚本。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230325232918047.png" alt="image-20230325232918047" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230325232918047.png" alt="image-20230325232918047" style="zoom:80%;" />
 
 psui.py
 
@@ -184,13 +184,13 @@ if __name__ == '__main__':
 
 在上面这个目录下，开一个终端，先激活pscan2的python环境，`conda activate /opt/pscan2/python38 `。然后执行 `python psui.py main`来启动pscan2，此时应该会报找不到啥链接库之类的错误，我这里是报了找不到`libamd.so`，这是因为我虽然把 `/opt/pscan2/SuiteSparse-7.0.1/lib`加入到了 `~/.bashrc`文件中，但是那个`lib`库里面没有 `libamd.so`，所以它说找不到。此时只需要在 `/opt/pscan2/SuiteSparse-7.0.1/lib`中为 `libamd.so`建立软连接即可，如下图所示。每加一个 `.so`文件的软链接后，就执行一下 `python psui.py main`，它会不断报新的库的错误，然后一个一个对应添加即可。当添加完所有的以后，应该还会报 `PyQt5`啥的找不到之类的错误，这是因为你现在的 `/opt/pscan2/python38`中还没有安装这些包，所以需要一个一个来安装，装好这些包以后，应该就可以启动pscan2的GUI了。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230326152244124.png" alt="image-20230326152244124" style="zoom:80%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230326152244124.png" alt="image-20230326152244124" style="zoom:80%;" />
 
 下面是pscan2的界面，跑一下仿真，是可以运行的，也没有什么报错。
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230326152937027.png" alt="image-20230326152937027" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230326152937027.png" alt="image-20230326152937027" style="zoom:67%;" />
 
-<img src="D:\PersonalWebsite\hexoSite\source\_posts\Blog\Linux\centos7_install_pscan2.assets\image-20230326153103335.png" alt="image-20230326153103335" style="zoom:67%;" />
+<img src="https://jasonbourne-photo1.oss-cn-beijing.aliyuncs.com/img1/image-20230326153103335.png" alt="image-20230326153103335" style="zoom:67%;" />
 
 ### 题外话
 
